@@ -51,8 +51,34 @@ public class MemberDao {
 			}
 			
 			return result;
-			
 		
 	}
+		
+		public boolean checkDuplicateId(String user_id) {
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			ResultSet rs = null;
+			String sql = "select * from memberInfo where user_id=?";
+			 
+			 try {
+				 conn = DBConnectionManager.getConnection();
+				 psmt = conn.prepareStatement(sql);
+				 psmt.setString(1, user_id);
+				 rs = psmt.executeQuery();
+				 
+				 while(rs.next()) {
+					 String id = rs.getString("id");
+					 System.out.printf("%s:아이디 존재!\n", user_id);
+					 return false;
+				 }
+			 } catch(Exception e) {
+				 e.printStackTrace();
+			 }
+			 return true;
+		}
 }
+		
+
+
+
 		

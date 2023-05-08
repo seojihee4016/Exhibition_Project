@@ -11,7 +11,9 @@
 	<h2>회원가입</h2>
 
 	<form name='personAddForm' action="join_proc.jsp" method="post">
-		아이디 : <input type="text" id="uid" name="user_id"><br>
+		아이디 : <input type="text" id="uid" name="user_id"> <!-- onkeydown="inputIdChk()" -->
+		<input type="button" onclick="IdCheck()" value="ID 중복확인"><br>
+		<!-- <input type="hidden" name="idCheckResult" value="0" /> -->
 		비밀번호 : <input type="password" id="pwd" name="password"><br>
 		비밀번호 재확인 : <input type="password" id="repwd" name="password"><br>
 		이름 : <input type="text" id="uname" name="name"><br>
@@ -21,11 +23,17 @@
 		생년월일 : <input type="text" id="birth" name="birthDate" size="8"><br>
 		* 8자리를 입력해주세요 ex)20010101<br>
 		이메일 : <input type="text" id="email_id" name="email" size="30"><br>
-		
+
 		<button id="insertBtn" type="button">가입</button>
 
 
 	</form>
+	
+	<script>
+	function IdCheck(){
+		window.open("IdCheckForm.jsp", "idwin", "width=500, height=350");
+	}
+	</script>
 
 	<script>
 		document.getElementById('insertBtn').addEventListener('click',
@@ -47,6 +55,12 @@
 						uid.focus();
 						return false;
 					}
+					
+//					//아이디 중복 유무 확인을 하지 않은 경우
+//					if(form.idCheckResult.value=="0") {
+//						alert("아이디 중복확인을 반드시 해주세요.");
+//						return false;
+//					}
 
 					if (pwd.value.trim() === "") {
 						alert("비밀번호를 입력하세요.");
