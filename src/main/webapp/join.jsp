@@ -11,9 +11,9 @@
 	<h2>회원가입</h2>
 
 	<form name='personAddForm' action="join_proc.jsp" method="post">
-		아이디 : <input type="text" id="uid" name="user_id"> <!-- onkeydown="inputIdChk()" -->
+		아이디 : <input type="text" id="uid" name="user_id">
 		<input type="button" onclick="IdCheck()" value="ID 중복확인"><br>
-		<!-- <input type="hidden" name="idCheckResult" value="0" /> -->
+		<input type="hidden" id="idCheckFlag" name="idCheckResult" value="0">
 		비밀번호 : <input type="password" id="pwd" name="password"><br>
 		비밀번호 재확인 : <input type="password" id="repwd" name="password"><br>
 		이름 : <input type="text" id="uname" name="name"><br>
@@ -31,7 +31,9 @@
 	
 	<script>
 	function IdCheck(){
-		window.open("IdCheckForm.jsp", "idwin", "width=500, height=350");
+	    window.open("IdCheckForm.jsp", "idwin", "width=500, height=350");
+	    // 아이디 중복확인 버튼을 눌렀을 때, 중복확인 여부를 변경
+	    document.getElementById("idCheckFlag").value = "1";
 	}
 	</script>
 
@@ -49,6 +51,7 @@
 					var male = document.getElementById("male");
 					var female = document.getElementById("female");
 					var email_id = document.getElementById("email_id");
+					var idCheckFlag = document.getElementById("idCheckFlag").value;
 
 					if (uid.value.trim() === "") {
 						alert("아이디를 입력하세요.");
@@ -56,11 +59,11 @@
 						return false;
 					}
 					
-//					//아이디 중복 유무 확인을 하지 않은 경우
-//					if(form.idCheckResult.value=="0") {
-//						alert("아이디 중복확인을 반드시 해주세요.");
-//						return false;
-//					}
+					// 아이디 중복확인을 하지 않았을 경우
+				    if (idCheckFlag === "0") {
+				        alert("아이디 중복 확인을 해 주세요.");
+				        return false;
+				    }
 
 					if (pwd.value.trim() === "") {
 						alert("비밀번호를 입력하세요.");
@@ -117,7 +120,7 @@
 					}
 
 					//입력 값 전송
-					document.personAddForm.submit();
+					form.submit();
 				});
 	</script>
 

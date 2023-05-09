@@ -31,7 +31,7 @@
 	</script>
 	<%
 	} else {
-	out.println("<p style='color: red'>해당 아이디는 사용하실 수 없습니다.</p>");
+	out.println("<p style='color: red'>해당 아이디는 사용할 수 없습니다.</p>");
 	}
 	%>
 	<a href="javascript:history.back()">[다시 시도]</a> &nbsp;&nbsp;
