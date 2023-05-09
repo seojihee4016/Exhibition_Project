@@ -23,31 +23,20 @@
 		int result = memberDao.insertMemberInfo(
 				user_id, password, name, phone, gender, birthDate, email); 
 		
-		/*MemberDto memberDto = new MemberDto();
-	
-		memberDto.setUser_id(user_id);
-		memberDto.setPassword(password);
-		memberDto.setName(name);
-		memberDto.setPhone(phone);
-		memberDto.setGender(gender);
-		memberDto.setBirthDate(birthDate);
-		memberDto.setEmail(email);*/
-
 		if (result == 1) {
 		
 	%>
 	<script>
-			alert('추가 성공');
+			alert('회원가입이 완료되었습니다.');
 		</script>
 	<%
 		} else {
 	%>
-	<!--수정 실패-->
 	<script>
-				alert('추가 실패..');
+				alert('회원가입에 실패했습니다. 가입 페이지로 다시 돌아갑니다.');
 	</script>
 	<%
 	}
 	%>
-	<script> location.href = './join.jsp';</script>
+	<script> location.href = './join.jsp';</script> <!-- login.jsp로 이동, 실패했을 때 ./join.jsp로 -->
 </body>
