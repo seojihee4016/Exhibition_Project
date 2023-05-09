@@ -32,7 +32,7 @@
 		if(user_id == input_id ){//memberInfo의 user_id와 사용자가 로그인 시 입력한 input_id가 같을 때
 			PrintWriter script=response.getWriter();
 			script.println("<script>");
-			script.println("location.href = 'main.jsp'");
+			script.println("location.href = 'loginCheck.jsp'");
 			script.println("</script>");	
 		}
 	
@@ -52,7 +52,7 @@
 			script.println("<script>");
 			script.println("alert('로그인 성공.')");
 			
-			script.println("location.href='main.jsp'");
+			script.println("location.href='loginCheck.jsp'");
 			script.println("</script>");
 		}
 		else if(result == 0){
