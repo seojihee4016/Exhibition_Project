@@ -13,19 +13,19 @@
 	<div style="text-align: center"></div>
 	<h3>*아이디 중복 확인 결과*</h3>
 	<%
-	String id = request.getParameter("user_id");
+	String user_id = request.getParameter("user_id");
 	MemberDao memberDao = new MemberDao();
-	boolean id_check = memberDao.checkDuplicateId(id);
-	out.println("입력 ID: <strong>" + id + "</strong>");
+	boolean id_check = memberDao.checkDuplicateId(user_id);
+	out.println("입력 ID: <strong>" + user_id + "</strong>");
 	if (id_check) {
 		out.println("<p>사용 가능한 아이디입니다.</p>");
-		out.println("<a href='javascript:apply(\"" + id + "\")'>[적용]</a>");
+		out.println("<a href='javascript:apply(\"" + user_id + "\")'>[적용]</a>");
 	%>
 	<script>
-		function apply(id) {
+		function apply(user_id) {
 			// 중복확인 id를 부모 창에 적용
 			// 부모 창 opener
-			opener.document.personAddForm.uid.value = id;
+			opener.document.personAddForm.uid.value = user_id;
 			window.close(); // 창닫기
 		}
 	</script>
