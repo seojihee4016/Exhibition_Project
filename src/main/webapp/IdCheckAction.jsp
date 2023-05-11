@@ -13,11 +13,11 @@
 	<div style="text-align: center"></div>
 	<h3>*아이디 중복 확인 결과*</h3>
 	<%
-	String user_id = request.getParameter("user_id");
+	String user_id = request.getParameter("input_id"); //user_id가 아닌 input_id로 수정
 	MemberDao memberDao = new MemberDao();
-	boolean id_check = memberDao.checkDuplicateId(user_id);
+	boolean user_id_check = memberDao.checkDuplicateId(user_id);
 	out.println("입력 ID: <strong>" + user_id + "</strong>");
-	if (id_check) {
+	if (user_id_check) {
 		out.println("<p>사용 가능한 아이디입니다.</p>");
 		out.println("<a href='javascript:apply(\"" + user_id + "\")'>[적용]</a>");
 	%>

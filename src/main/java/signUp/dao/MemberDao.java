@@ -69,7 +69,7 @@ public class MemberDao {
 			rs = psmt.executeQuery();
 
 			while(rs.next()) {
-				String id = rs.getString("id");
+				String usre_id = rs.getString("user_id");
 				System.out.printf("%s:아이디 존재!\n", user_id);
 				return false;
 			}
