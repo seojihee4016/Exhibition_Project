@@ -81,34 +81,85 @@ public class MemberDao {
 
 
 	//로그인
-	public int login(String user_id, String password) {
+		public int login(String user_id, String password) {
+
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			ResultSet rs = null;
+
+			try {
+				conn = DBConnectionManager.getConnection();
+
+				String SQL="SELECT * FROM memberInfo WHERE user_id=?";
+
+				psmt=conn.prepareStatement(SQL); // SQL 실행 객체
+				psmt.setString(1, user_id);  // SQL 객체의 첫 번째 물음표 값 지정
+				rs=psmt.executeQuery();
+
+				if(rs.next()) {
+					if(rs.getString("password").equals(password)) {
+						return 1;
+					}else {
+						return 0;
+					}
+				}
+				return -1;
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			return -2;
+		}
+
+
+	//memberList 가져오기
+
+	public ArrayList getMemberList(){
 
 		Connection conn = null;
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 
+		//가변길이 배열 생성
+		ArrayList memberList = new ArrayList(); 
+
 		try {
 			conn = DBConnectionManager.getConnection();
 
-			String SQL="SELECT * FROM memberInfo WHERE user_id=?";
+			String SQL="SELECT * FROM memberInfo";
 
 			psmt=conn.prepareStatement(SQL); // SQL 실행 객체
-			psmt.setString(1, user_id);  // SQL 객체의 첫 번째 물음표 값 지정
 			rs=psmt.executeQuery();
 
-			if(rs.next()) {
-				if(rs.getString("password").equals(password)) {
-					return 1;
-				}else {
-					return 0;
-				}
+
+
+			while(rs.next()){
+				MemberDto memberDto = new MemberDto();//1.memberDto 객체생성
+				memberDto.setBirthDate(rs.getString("birthDate"));
+				memberDto.setEmail(rs.getString("email"));
+				memberDto.setUser_id(rs.getString("user_id"));
+				memberDto.setName(rs.getString("name"));
+				memberDto.setPhone(rs.getString("phone"));
+				memberDto.setPassword(rs.getString("password"));
+				memberDto.setGender(rs.getString("gender"));
+				//여기까지가 한 행의 데이터를 변수mb에 저장한 것임. while로 모든 행을 반복해서 변수mb에 저장
+
+				//가변배열(ArrayList)에 위의 데이터mb를 저장
+				//즉 배열 한 칸에 회원 1명의 정보를 저장함.
+				memberList.add(memberDto); //업캐스팅 (MemberDto-> Object)
+				//System.out.println(memberList); 배열한 칸에 잘 들어갔는지 콘솔로 확인
 			}
-			return -1;
-		} catch (Exception e) {
-			// TODO: handle exception
+
+			System.out.println("정보검색완료");
+			//System.out.println(memberList);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			DBConnectionManager.close(rs, psmt, conn);
 		}
-		return -2;
+		return memberList;
 	}
 
 
