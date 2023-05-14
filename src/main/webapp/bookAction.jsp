@@ -11,6 +11,6 @@
 	<h1><%=session.getAttribute("user_id")%>님 
 	<small>예약에 성공하셨습니다.</small>
 	</h1>
-	<a href="myPage.jsp">마이페이지 이동</a>
+	<a href="admin.jsp">마이페이지 이동</a>
 </body>
 </html>
