@@ -5,129 +5,160 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
-import exhibition.api.ExhibitionInfo;
-import exhibition.api.ApiExplorer;
 import exhibition.dto.ExhibitionDto;
 import signUp.oracle.DBConnectionManager;
 
-
-
 public class ExhibitionDao {
-	
-		public 	List<ExhibitionInfo> insertExhibitionInfoList(){
- 
-			Connection conn = null;
-			PreparedStatement psmt = null;
-			ResultSet rs = null;
-			List<ExhibitionInfo> exhibitionInfoList = null;
+	public ArrayList getExhibitionMainList() {
 
-			try {
-				conn = DBConnectionManager.getConnection();
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
 
-				// 쿼리문!
-				String sql = "insert into exhibitionData "
-						+" values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		// 가변길이 배열 생성
+		ArrayList exhibitionMainList = new ArrayList();
 
-				psmt = conn.prepareStatement(sql);
+		try {
+			conn = DBConnectionManager.getConnection();
 
-				rs = psmt.executeQuery(); // 쿼리를 실행!!
+			String SQL = "SELECT dp_main_img, dp_name, dp_place, dp_start, dp_end, dp_seq " + "from exhibitionData "
+					+ "where TO_CHAR(dp_end, 'YYYYMMDD') >= '20230402'" + "order by dp_end desc";
 
-				exhibitionInfoList = new ArrayList<ExhibitionInfo>();
+			psmt = conn.prepareStatement(SQL); // SQL 실행 객체
+			rs = psmt.executeQuery();
 
-				while (rs.next()) {
-					ExhibitionInfo exhibitionDto = new ExhibitionInfo();
+			while (rs.next()) {
+				ExhibitionDto exhibitionDto = new ExhibitionDto();// 1.exhibitionDto 객체생성
+				exhibitionDto.setDp_main_img(rs.getString("dp_main_img"));
+				exhibitionDto.setDp_name(rs.getString("dp_name"));
+				exhibitionDto.setDp_place(rs.getString("dp_place"));
+				exhibitionDto.setDp_start(rs.getString("dp_start"));
+				exhibitionDto.setDp_end(rs.getString("dp_end"));
+				exhibitionDto.setDp_seq(rs.getInt("dp_seq"));
 
-					exhibitionDto.setDP_SEQ(rs.getInt("DP_SEQ"));
-					exhibitionDto.setDP_NAME(rs.getString("DP_NAME"));
-					exhibitionDto.setDP_SUBNAME(rs.getString("DP_SUBNAME"));
-					exhibitionDto.setDP_PLACE(rs.getString("DP_PLACE"));
-					exhibitionDto.setDP_START(rs.getString("DP_START"));
-					exhibitionDto.setDP_END(rs.getString("DP_END"));
-					exhibitionDto.setDP_HOMEPAGE(rs.getString("DP_HOMEPAGE"));
-					exhibitionDto.setDP_EVENT(rs.getString("DP_EVENT"));
-					exhibitionDto.setDP_SPONSOR(rs.getString("DP_SPONSOR"));
-					exhibitionDto.setDP_VIEWTIME(rs.getString("DP_VIEWTIME"));
-					exhibitionDto.setDP_VIEWCHARGE(rs.getString("DP_VIEWCHARGE"));
-					exhibitionDto.setDP_ART_PART(rs.getString("DP_ART_PART"));
-					exhibitionDto.setDP_ART_CNT(rs.getString("DP_ART_CNT"));
-					exhibitionDto.setDP_ARTIST(rs.getString("DP_ARTIST"));
-					exhibitionDto.setDP_VIEWPOINT(rs.getString("DP_VIEWPOINT"));
-					exhibitionDto.setDP_INFO(rs.getString("DP_INFO"));
-					exhibitionDto.setDP_MAIN_IMG(rs.getString("DP_MAIN_IMG"));
-					exhibitionDto.setDP_LNK(rs.getString("DP_LNK"));
+				// 여기까지가 한 행의 데이터를 변수mb에 저장한 것임. while로 모든 행을 반복해서 변수mb에 저장
 
-					exhibitionInfoList.add(exhibitionDto);
-				}
-
-				// DB에 쿼리문 실행
-				// 쿼리 결과를 반환 -> 활용
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				DBConnectionManager.close(rs, psmt, conn);
+				// 가변배열(ArrayList)에 위의 데이터mb를 저장
+				// 즉 배열 한 칸에 회원 1명의 정보를 저장함.
+				exhibitionMainList.add(exhibitionDto); // 업캐스팅 (exhibitionDto-> Object)
+				// System.out.println(memberList); 배열한 칸에 잘 들어갔는지 콘솔로 확인
 			}
 
-			return exhibitionInfoList;
+			System.out.println("메인 페이지 정보 전송 완료");
+			// System.out.println(memberList);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.close(rs, psmt, conn);
 		}
+		return exhibitionMainList;
+	}
+
+	public ArrayList getInsideList() {
+
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+
+		// 가변길이 배열 생성
+		ArrayList mainInsideList = new ArrayList();
+
+		try {
+			conn = DBConnectionManager.getConnection();
+
+			String SQL = "SELECT dp_name, dp_place, dp_start, dp_end, dp_sponsor, "
+					+ "dp_viewtime, dp_viewcharge, dp_art_part, dp_artist, " + "dp_viewpoint, dp_info, dp_seq "
+					+ "from exhibitionData " + "where TO_CHAR(dp_end, 'YYYYMMDD') >= '20230402'"
+					+ "order by dp_end desc";
+
+			psmt = conn.prepareStatement(SQL); // SQL 실행 객체
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				ExhibitionDto exhibitionDto = new ExhibitionDto();// 1.exhibitionDto 객체생성
+				exhibitionDto.setDp_name(rs.getString("dp_name"));
+				exhibitionDto.setDp_place(rs.getString("dp_place"));
+				exhibitionDto.setDp_start(rs.getString("dp_start"));
+				exhibitionDto.setDp_end(rs.getString("dp_end"));
+				exhibitionDto.setDp_sponsor(rs.getString("dp_sponsor"));
+				exhibitionDto.setDp_viewtime(rs.getString("dp_viewtime"));
+				exhibitionDto.setDp_viewcharge(rs.getString("dp_viewcharge"));
+				exhibitionDto.setDp_art_part(rs.getString("dp_art_part"));
+				exhibitionDto.setDp_artist(rs.getString("dp_artist"));
+				exhibitionDto.setDp_viewpoint(rs.getString("dp_viewpoint"));
+				exhibitionDto.setDp_info(rs.getString("dp_info"));
+				exhibitionDto.setDp_seq(rs.getInt("dp_seq"));
+
+				// 여기까지가 한 행의 데이터를 변수mb에 저장한 것임. while로 모든 행을 반복해서 변수mb에 저장
+
+				// 가변배열(ArrayList)에 위의 데이터mb를 저장
+				// 즉 배열 한 칸에 회원 1명의 정보를 저장함.
+				mainInsideList.add(exhibitionDto); // 업캐스팅 (exhibitionDto-> Object)
+				// System.out.println(memberList); 배열한 칸에 잘 들어갔는지 콘솔로 확인
+			}
+
+			System.out.println("상세정보 페이지 정보 전송 완료");
+			// System.out.println(memberList);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.close(rs, psmt, conn);
+		}
+		return mainInsideList;
+	}
+
+	public ExhibitionDto selectDpInfoBydp_seq(int dp_seq) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		ExhibitionDto exhibitionDto = null;
+
+		try {
+			conn = DBConnectionManager.getConnection();
+
+			// 쿼리문!
+			String sql = "SELECT dp_name, dp_place, dp_main_img, dp_start, dp_end, dp_sponsor, dp_viewtime, dp_viewcharge, dp_art_part, dp_artist, dp_viewpoint, dp_info, dp_seq"
+					+ " FROM exhibitiondata WHERE dp_seq = ?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, dp_seq);
+			// 첫번째 매개변수로 들어온 애를 id에
+
+			rs = psmt.executeQuery(); // 쿼리를 실행!!
+
+			if (rs.next()) {
+				exhibitionDto = new ExhibitionDto();
+
+				exhibitionDto.setDp_name(rs.getString("dp_name"));
+				exhibitionDto.setDp_place(rs.getString("dp_place"));
+				exhibitionDto.setDp_main_img(rs.getString("dp_main_img"));
+				exhibitionDto.setDp_start(rs.getString("dp_start"));
+				exhibitionDto.setDp_end(rs.getString("dp_end"));
+				exhibitionDto.setDp_sponsor(rs.getString("dp_sponsor"));
+				exhibitionDto.setDp_viewtime(rs.getString("dp_viewtime"));
+				exhibitionDto.setDp_viewcharge(rs.getString("dp_viewcharge"));
+				exhibitionDto.setDp_art_part(rs.getString("dp_art_part"));
+				exhibitionDto.setDp_artist(rs.getString("dp_artist"));
+				exhibitionDto.setDp_viewpoint(rs.getString("dp_viewpoint"));
+				exhibitionDto.setDp_info(rs.getString("dp_info"));
+				exhibitionDto.setDp_seq(rs.getInt("dp_seq"));
+			}
+
+			// DB에 쿼리문 실행
+			// 쿼리 결과를 반환 -> 활용
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.close(rs, psmt, conn);
+		}
+
+		return exhibitionDto;
+	}
+
 }
-			
-	
-	
-//	public int insertExhibitionInfo(List<ExhibitionInfo> exInfoList) {
-//
-//		Connection conn = null;
-//		PreparedStatement psmt = null;
-//		ResultSet rs = null;
-//		int result = 0;
-//		
-//		try {
-//			conn = DBConnectionManager.getConnection();
-//
-//			// 쿼리문!
-//			String sql = "insert into exhibitionData values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,)";
-///*
-// (DP_SEQ, DP_NAME, DP_SUBNAME,"
-//					+ "DP_PLACE, DP_START, DP_END, DP_HOMEPAGE, DP_EVENT, DP_SPONSOR,"
-//					+ "DP_VIEWTIME, DP_VIEWCHARGE, DP_ART_PART, DP_ART_CNT, DP_ARTIST,"
-//					+ "DP_VIEWPOINT, DP_INFO, DP_MAIN_IMG, DP_LNK)"
-//						+"
-//						*/
-//			psmt = conn.prepareStatement(sql);
-//			psmt.setString(1,DP_SEQ);
-////			psmt.setString(2. );
-////			psmt.setString(3, );
-////			psmt.setString(4, );
-////			psmt.setString(5, );
-////			psmt.setString(6, );
-////			psmt.setString(7, );
-////			psmt.setString(8, );
-////			psmt.setString(9, );
-////			psmt.setString(10, );
-////			psmt.setString(11, );
-////			psmt.setString(12, );
-////			psmt.setString(13, );
-////			psmt.setString(14, );
-////			psmt.setString(15, );
-////			psmt.setString(16, );
-////			psmt.setString(17, );
-////			psmt.setString(18, );
-//
-//			result = psmt.executeUpdate();
-//			
-//			System.out.println("처리결과:" + result);
-//			// DB에 쿼리문 실행
-//			// 쿼리 결과를 반환 -> 활용
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} finally {
-//			DBConnectionManager.close(rs, psmt, conn);
-//		}
-//		
-//		return result;
-//	}
-//	
-//}

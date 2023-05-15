@@ -1,151 +1,136 @@
 package exhibition.dto;
 
 public class ExhibitionDto {
-	int DP_SEQ;
-	//전시일련번호
-	String DP_NAME;
-	//전시회명
-	String DP_SUBNAME;
-	//전시부제
-	String DP_PLACE;
-	//전시장소
-	String DP_START;
-	//전시시작기간
-	String DP_END;
-	//전시끝기간
-	String DP_HOMEPAGE;
-	//홈페이지URL
-	String DP_EVENT;
-	//부대행사
-	String DP_SPONSOR;
-	//주최및후원
-	String DP_VIEWTIME;
-	//전시(관람)시간
-	String DP_VIEWCHARGE;
-	//관람료(원)
-	String DP_ART_PART;
-	//전시부문
-	String DP_ART_CNT;
-	//작품수
-	String DP_ARTIST;
-	//출품작가
-	String DP_VIEWPOINT;
-	//관람포인트
-	String DP_INFO;
-	//전시설명
-	String DP_MAIN_IMG;
-	//대표이미지
-	String DP_LNK;
-	//바로가기링크
+	int dp_seq;
+	String dp_name;
+	String dp_subname;
+	String dp_place;
+	String dp_start;
+	String dp_end;
+	String dp_homepage;
+	String dp_event;
+	String dp_sponsor;
+	String dp_viewtime;
+	String dp_viewcharge;
+	String dp_art_part;
+	String dp_art_cnt;
+	String dp_artist;
+	String dp_viewpoint;
+	String dp_info;
+	String dp_main_img;
+	String dp_lnk;
 	
-	public int getDP_SEQ() {
-		return DP_SEQ;
+	public int getDp_seq() {
+		return dp_seq;
 	}
-	public void setDP_SEQ(int dP_SEQ) {
-		DP_SEQ = dP_SEQ;
+	public void setDp_seq(int dp_seq) {
+		this.dp_seq = dp_seq;
 	}
-	public String getDP_NAME() {
-		return DP_NAME;
+	public String getDp_name() {
+		return dp_name;
 	}
-	public void setDP_NAME(String dP_NAME) {
-		DP_NAME = dP_NAME;
+	public void setDp_name(String dp_name) {
+		this.dp_name = dp_name;
 	}
-	public String getDP_SUBNAME() {
-		return DP_SUBNAME;
+	public String getDp_subname() {
+		return dp_subname;
 	}
-	public void setDP_SUBNAME(String dP_SUBNAME) {
-		DP_SUBNAME = dP_SUBNAME;
+	public void setDp_subname(String dp_subname) {
+		this.dp_subname = dp_subname;
 	}
-	public String getDP_PLACE() {
-		return DP_PLACE;
+	public String getDp_place() {
+		return dp_place;
 	}
-	public void setDP_PLACE(String dP_PLACE) {
-		DP_PLACE = dP_PLACE;
+	public void setDp_place(String dp_place) {
+		this.dp_place = dp_place;
 	}
-	public String getDP_START() {
-		return DP_START;
+	public String getDp_start() {
+		return dp_start;
 	}
-	public void setDP_START(String dP_START) {
-		DP_START = dP_START;
+	public void setDp_start(String dp_start) {
+		this.dp_start = dp_start;
 	}
-	public String getDP_END() {
-		return DP_END;
+	public String getDp_end() {
+		return dp_end;
 	}
-	public void setDP_END(String dP_END) {
-		DP_END = dP_END;
+	public void setDp_end(String dp_end) {
+		this.dp_end = dp_end;
 	}
-	public String getDP_HOMEPAGE() {
-		return DP_HOMEPAGE;
+	public String getDp_homepage() {
+		return dp_homepage;
 	}
-	public void setDP_HOMEPAGE(String dP_HOMEPAGE) {
-		DP_HOMEPAGE = dP_HOMEPAGE;
+	public void setDp_homepage(String dp_homepage) {
+		this.dp_homepage = dp_homepage;
 	}
-	public String getDP_EVENT() {
-		return DP_EVENT;
+	public String getDp_event() {
+		return dp_event;
 	}
-	public void setDP_EVENT(String dP_EVENT) {
-		DP_EVENT = dP_EVENT;
+	public void setDp_event(String dp_event) {
+		this.dp_event = dp_event;
 	}
-	public String getDP_SPONSOR() {
-		return DP_SPONSOR;
+	public String getDp_sponsor() {
+		return dp_sponsor;
 	}
-	public void setDP_SPONSOR(String dP_SPONSOR) {
-		DP_SPONSOR = dP_SPONSOR;
+	public void setDp_sponsor(String dp_sponsor) {
+		this.dp_sponsor = dp_sponsor;
 	}
-	public String getDP_VIEWTIME() {
-		return DP_VIEWTIME;
+	public String getDp_viewtime() {
+		return dp_viewtime;
 	}
-	public void setDP_VIEWTIME(String dP_VIEWTIME) {
-		DP_VIEWTIME = dP_VIEWTIME;
+	public void setDp_viewtime(String dp_viewtime) {
+		this.dp_viewtime = dp_viewtime;
 	}
-	public String getDP_VIEWCHARGE() {
-		return DP_VIEWCHARGE;
+	public String getDp_viewcharge() {
+		return dp_viewcharge;
 	}
-	public void setDP_VIEWCHARGE(String dP_VIEWCHARGE) {
-		DP_VIEWCHARGE = dP_VIEWCHARGE;
+	public void setDp_viewcharge(String dp_viewcharge) {
+		this.dp_viewcharge = dp_viewcharge;
 	}
-	public String getDP_ART_PART() {
-		return DP_ART_PART;
+	public String getDp_art_part() {
+		return dp_art_part;
 	}
-	public void setDP_ART_PART(String dP_ART_PART) {
-		DP_ART_PART = dP_ART_PART;
+	public void setDp_art_part(String dp_art_part) {
+		this.dp_art_part = dp_art_part;
 	}
-	public String getDP_ART_CNT() {
-		return DP_ART_CNT;
+	public String getDp_art_cnt() {
+		return dp_art_cnt;
 	}
-	public void setDP_ART_CNT(String dP_ART_CNT) {
-		DP_ART_CNT = dP_ART_CNT;
+	public void setDp_art_cnt(String dp_art_cnt) {
+		this.dp_art_cnt = dp_art_cnt;
 	}
-	public String getDP_ARTIST() {
-		return DP_ARTIST;
+	public String getDp_artist() {
+		return dp_artist;
 	}
-	public void setDP_ARTIST(String dP_ARTIST) {
-		DP_ARTIST = dP_ARTIST;
+	public void setDp_artist(String dp_artist) {
+		this.dp_artist = dp_artist;
 	}
-	public String getDP_VIEWPOINT() {
-		return DP_VIEWPOINT;
+	public String getDp_viewpoint() {
+		return dp_viewpoint;
 	}
-	public void setDP_VIEWPOINT(String dP_VIEWPOINT) {
-		DP_VIEWPOINT = dP_VIEWPOINT;
+	public void setDp_viewpoint(String dp_viewpoint) {
+		this.dp_viewpoint = dp_viewpoint;
 	}
-	public String getDP_INFO() {
-		return DP_INFO;
+	public String getDp_info() {
+		return dp_info;
 	}
-	public void setDP_INFO(String dP_INFO) {
-		DP_INFO = dP_INFO;
+	public void setDp_info(String dp_info) {
+		this.dp_info = dp_info;
 	}
-	public String getDP_MAIN_IMG() {
-		return DP_MAIN_IMG;
+	public String getDp_main_img() {
+		return dp_main_img;
 	}
-	public void setDP_MAIN_IMG(String dP_MAIN_IMG) {
-		DP_MAIN_IMG = dP_MAIN_IMG;
+	public void setDp_main_img(String dp_main_img) {
+		this.dp_main_img = dp_main_img;
 	}
-	public String getDP_LNK() {
-		return DP_LNK;
+	public String getDp_lnk() {
+		return dp_lnk;
 	}
-	public void setDP_LNK(String dP_LNK) {
-		DP_LNK = dP_LNK;
+	public void setDp_lnk(String dp_lnk) {
+		this.dp_lnk = dp_lnk;
 	}
 	
+
 	
 }
+
+
