@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/book.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<link rel="stylesheet"
+		href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+	<form name='bookForm' action="bookAction.jsp" method="post" class="cf"
+		name="select">
+		<div class="wrap">
+			<div class="booking_wrap">
+				<div class="inner">
+
+
+					<!-- 달력 폼-->
+					<section class="accordion_cont ">
+						<div class="acc_head">
+							<h3 id="result_canlender" class="acc_tit">요일</h3>
+							<button type="button" class="acc_btn">열기</button>
+						</div>
+						<div class="acc_body">
+							<div id="canlender" class="booking_canlender"></div>
+						</div>
+					</section>
+
+
+
+					<!-- 전시회 예약 시간  -->
+					<section class="accordion_cont active">
+						<div class="acc_head">
+							<h3 id="result_time" class="acc_tit">시간선택</h3>
+							<button type="button" class="acc_btn">열기</button>
+						</div>
+
+						<div class=acc_body>
+							<p class="time_txt">오전</p>
+							<ul class="item_time">
+								<li><label for="am10"> <input type="radio"
+										id="am10" name="time" value="1000"> <span>10:00</span>
+								</label></li>
+								<li><label for="am10_2"> <input type="radio"
+										id="am10_2" name="time" value="1030"> <span>10:30</span>
+								</label></li>
+								<li><label for="am11"> <input type="radio"
+										id="am11" name="time" value="1100"> <span>11:00</span>
+								</label></li>
+								<li><label for="am11_2"> <input type="radio"
+										id="am11_2" name="time" value="1130"> <span>11:30</span>
+								</label></li>
+							</ul>
+							<p class="time_txt">오후</p>
+							<ul class="item_time">
+								<li><label for="pm12"> <input type="radio"
+										id="pm12" name="time" value="1200"> <span>12:00</span>
+								</label></li>
+								<li><label for="pm12_2"> <input type="radio"
+										id="pm12_2" name="time" value="1230"> <span>12:30</span>
+								</label></li>
+								<li><label for="pm01"> <input type="radio"
+										id="pm01" name="time" value="1300"> <span>1:00</span>
+								</label></li>
+								<li><label for="pm01_2"> <input type="radio"
+										id="pm01_2" name="time" value="1330"> <span>1:30</span>
+								</label></li>
+								<li><label for="pm02"> <input type="radio"
+										id="pm02" name="time" value="1400"> <span>2:00</span>
+								</label></li>
+								<li><label for="pm02_2"> <input type="radio"
+										id="pm02_2" name="time" value="1430"> <span>2:30</span>
+								</label></li>
+								<li><label for="pm03"> <input type="radio"
+										id="pm03" name="time" value="1500"> <span>3:00</span>
+								</label></li>
+								<li><label for="pm03_2"> <input type="radio"
+										id="pm03_2" name="time" value="1530"> <span>3:30</span>
+								</label></li>
+								<li><label for="pm04"> <input type="radio"
+										id="pm04" name="time" value="1600"> <span>4:00</span>
+								</label></li>
+								<li><label for="pm04_2"> <input type="radio"
+										id="pm04_2" name="time" value="1630"> <span>4:30</span>
+								</label></li>
+								<li><label for="pm05"> <input type="radio"
+										id="pm05" name="time" value="1700"> <span>5:00</span>
+								</label></li>
+								<li><label for="pm05_2"> <input type="radio"
+										id="pm05_2" name="time" value="1730"> <span>5:30</span>
+								</label></li>
+								<li><label for="pm06"> <input type="radio"
+										id="pm06" name="time" value="1800"> <span>6:00</span>
+								</label></li>
+							</ul>
+						</div>
+					</section>
+
+
+					<!-- 인원수  -->
+					<section class="accordion_cont visit_cont">
+						<div class="acc_head">
+							<h3 class="acc_tit">
+								<span id="result_count"> 1</span>명
+							</h3>
+							<button type="button" class="acc_btn">열기</button>
+						</div>
+
+						<div class="acc_body">
+							<p class="guide">1~4명까지 선택 가능합니다.</p>
+							<section class="visit_group disTable">
+								<h4 class="disCell visit_tit">방문 인원을 선택하세요.</h4>
+
+								<div class="disCell visit_control">
+									<h5>성인</h5>
+									<button type="button" class="quantity_btn minus_btn">-</button>
+									<input type="number" class="quantity_input" value="1" readonly>
+									<button type="button" class="quantity_btn plus_btn">+</button>
+								</div>
+
+
+								<div class="disCell visit_control">
+									<h5>청소년</h5>
+									<button type="button" class="quantity_btn minus_btn">-</button>
+									<input type="number" class="quantity_input" value="1" readonly>
+									<button type="button" class="quantity_btn plus_btn">+</button>
+								</div>
+
+								<div class="disCell visit_control">
+									<h5>아동</h5>
+									<button type="button" class="quantity_btn minus_btn">-</button>
+									<input type="number" class="quantity_input" value="1" readonly>
+									<button type="button" class="quantity_btn plus_btn">+</button>
+								</div>
+							</section>
+						</div>
+					</section>
+				</div>
+
+
+
+
+				<!-- 전시회 설명이나 알림 -->
+				<div class="notice_cont">
+					<div class="notice_box">
+						<strong class="tit">알림</strong>
+						<p class="txt">
+							이용시간 : 10:00 ~ 18:00<br> 미술관/전시관 알림 내용<br> * 전시회 명<br>
+							전시회 이용 주의점 /알림 사항.
+						</p>
+					</div>
+				</div>
+
+
+				<!-- 예약 내용 -->
+				<section class="section_reception">
+					<h3>예약 내용을 확인해주세요.</h3>
+					<dl class="dl_list">
+						<dt>일정</dt>
+						<dd>
+							<span class="decide_date"></span><span class="decide_time"></span>
+						</dd>
+					</dl>
+					<dl class="dl_list">
+						<dt>인원</dt>
+						<dd class="decide_count"></dd>
+					</dl>
+				</section>
+
+
+
+				<!-- 예약자 정보 폼 (비회원일 경우..) -->
+				<section class="section_reception">
+					<h3>예약자 정보</h3>
+					<div class="form_info">
+
+						<dl class="dl_info">
+							<dt>
+								<label for="userName" class="info_label">예약자</label>
+							</dt>
+							<dd>
+								<input type="text" id="userName" class="info_input">
+							</dd>
+						</dl>
+						<dl class="dl_info">
+							<dt>
+								<label for="userCall" class="info_label">연락처</label>
+							</dt>
+							<dd>
+								<input type="text" id="userCall" class="info_input">
+							</dd>
+						</dl>
+						<dl class="dl_info">
+							<dt>
+								<label for="userEmail" class="info_label">이메일</label>
+							</dt>
+							<dd>
+								<input type="text" id="userEmail" class="info_input">
+							</dd>
+						</dl>
+						<dl class="dl_info">
+							<dt>
+								<label for="textarea" class="info_label">전시회 명</label>
+							</dt>
+							<dd>
+								<span class="decide_date"></span><span class="decide_time"></span>
+							</dd>
+						</dl>
+
+					</div>
+				</section>
+				<section class="accordion_cont seller">
+					<div class="acc_head">
+						<h3 class="acc_tit">판매자 정보</h3>
+						<button type="button" class="acc_btn">열기</button>
+					</div>
+					<div class="acc_body">Exhibition_Project_2조</div>
+				</section>
+
+				<div class="bottom_btn_group">
+					<button type="button" class="reserve_btn">예약하기</button>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+
+	<script>
+	$(function (e) {
+		  const resultBooking = document.getElementById("result_canlender");
+		  const timeList = document.querySelectorAll(".item_time > li");
+		  const timeInput = document.querySelectorAll(".item_time input[type=radio]");
+		  const resultTime = document.getElementById("result_time");
+		  const accBtn = document.querySelectorAll(".acc_btn");
+		  const resultCount = document.getElementById("result_count");
+		  //const plusBtn = document.querySelector(".plus_btn");
+		  //const miunsBtn = document.querySelector(".minus_btn");
+		  const quantityInput = document.querySelector(".quantity_input");
+		  const KEY_DATE = document.querySelector(".decide_date");
+		  const KEY_TIME = document.querySelector(".decide_time");
+		  const KEY_COUNT = document.querySelectorAll(".decide_count");
+		  const reserveBTN = document.querySelector(".reserve_btn");
+
+		  const miunsBtns = document.querySelector(".minus_btn");
+		  
+		  const plusBtns = document.querySelectorAll(".plus_btn");
+		  $('.plus_btn').onEventListner
+		  const minusBtns = document.querySelectorAll(".minus_btn");
+		  $('.minus_btn').onEventListner
+		  
+		  
+		  //휴관일
+		  const natDays = [
+		    [2023, 1, 1, "ko", "신정"],
+		    [2023, 1, 21, "ko", ""],
+		    [2023, 1, 22, "ko", "설"],
+		    [2023, 1, 23, "ko", ""],
+		    [2023, 1, 24, "ko", "대체공휴일"],
+		    [2023, 3, 1, "ko", "삼일절"],
+		    [2023, 5, 5, "ko", "어린이날"],
+		    [2023, 5, 27, "ko", "석가탄신일"],
+		    [2023, 6, 6, "ko", "현충일"],
+		    [2023, 8, 15, "ko", "광복절"],
+		    [2023, 9, 28, "ko", ""],
+		    [2023, 9, 29, "ko", "추석"],
+		    [2023, 9, 30, "ko", ""],
+		    [2023, 10, 3, "ko", "개천절"],
+		    [2023, 10, 9, "ko", "한글날"],
+		    [2023, 12, 25, "ko", "성탄절"]
+		  ];
+
+		  //토글
+		  accBtn.forEach((event) =>
+		    event.addEventListener("click", (event) => {
+		      let target = event.target
+		        .closest(".acc_head")
+		        .parentNode.classList.toggle("active");
+		    })
+		  );
+
+		  //jquery datepicker
+		  $("#canlender").datepicker({
+		    showOtherMonths: false,
+		    showMonthAfterYear: true,
+		    dateFormat: "yy-mm-dd",
+		    monthNames: [
+		      "01",
+		      "02",
+		      "03",
+		      "04",
+		      "05",
+		      "06",
+		      "07",
+		      "08",
+		      "09",
+		      "10",
+		      "11",
+		      "12"
+		    ],
+		    dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
+		    yearSuffix: ".", //달력의 년도 뒤에 붙는 텍스트
+		    beforeShowDay: nationalDays,
+		    minDate: -1, //하루전
+		    maxDate: "2099-12-31",//최대날짜
+		    onSelect: function (e) { //텍스트가 선택될 때, 이벤트 걸기
+		      let arr = e.split("-");
+		      let month = arr[1];
+		      let day = arr[2];
+		      let week = ["일", "월", "화", "수", "목", "금", "토"];
+		      let KEY_WEEK = week[format.getDay()];
+
+		      resultBooking.innerText = `${month}.${day}(${KEY_WEEK})`;
+		      KEY_DATE.innerText = `${month}.${day}(${KEY_WEEK})`;
+		      event.target.closest(".accordion_cont").classList.toggle("active");
+
+		      if (resultBooking.innerText.slice(3, -3) == now.getDate()) {
+		        window.addEventListener("load", disabled);
+		        console.log("true");
+		      } else {
+		        window.removeEventListener("load", disabled);
+		        console.log("false");
+		      }
+		    }
+		  });
+
+		  function nationalDays(date) {
+		    for (i = 0; i < natDays.length; i++) {
+		      if (
+		        date.getFullYear() == natDays[i][0] &&
+		        date.getMonth() == natDays[i][1] - 1 &&
+		        date.getDate() == natDays[i][2]
+		      ) {
+		        return [true, natDays[i][3] + "_holiday", natDays[i][4]];
+		      }
+		    }
+		    return [true, ""];
+		  }
+
+		  //Today
+		  let now = new Date();
+		  let month = now.getMonth() + 1; //0~11을 반환하기 때문에 +1
+		  let date = now.getDate();
+		  let formatdate = ("00" + date.toString()).slice(-2); //요일 두글자 => "00"을 붙여서 뒤에서 2자리를 잘라주기
+		  let week = ["일", "월", "화", "수", "목", "금", "토"];
+		  const format = new Date(
+		    $("#canlender").datepicker({ format: "yy-mm-dd" }).val()
+		  );
+		  const KET_WEEK = week[format.getDay()];
+
+		  resultBooking.innerText = `${month}.${formatdate}(${KET_WEEK})`; 
+		  KEY_DATE.innerText = `${month}.${formatdate}(${KET_WEEK})`;
+
+		  //Time select
+		  timeInput.forEach((event) =>
+		    event.addEventListener("change", (event) => {
+		      let target = event.target;
+		      let time_txt = target.nextElementSibling.innerText;
+
+		      resultTime.innerText = `${time_txt}`;
+		      KEY_TIME.innerText = ` , ${time_txt}`;
+		      target.closest(".accordion_cont").classList.remove("active");
+		      resultCount.innerText = "1";
+		      KEY_COUNT.innerText = "1";
+
+		      window.sessionStorage.setItem("time", time_txt);
+		    })
+		  );
+
+		  //시간 막아 놓기
+		  function disabled() {
+		    const housrs = ("0" + now.getHours()).slice(-2);
+		    const miuntes = ("0" + now.getMinutes()).slice(-2);
+		    //console.log(typeof(timeSpan)); //object
+
+		    for (let i = 0; i < timeList.length; i++) {
+		      let targetInput = timeInput[i];
+		      let value = timeInput[i].value;
+		      let KEY_HOUSRS = value.slice(0, 2);
+		      let KEY_MIUNTES = value.slice(2, 4);
+
+		      if (housrs <= KEY_HOUSRS) {
+		        if (housrs == KEY_HOUSRS && miuntes >= KEY_MIUNTES) {
+		          targetInput.disabled = true;
+		        }
+		      } else {
+		        targetInput.disabled = true;
+		      }
+		    }
+		  }
+		  window.addEventListener("load", disabled);
+
+		  //인원 수 카운트
+		  let count = 1;
+		  plusBtns.onclick = function (e) {
+		    if (count == 4) {
+		      alert("예약 가능한 인원수를 초과했습니다.");
+		    } else {
+		      count++;
+		      quantityInput.value = count;
+		      resultCount.innerText = `${count}`; //${count}는 문자열리터럴을 변수 count의 값을 문자열로 삽입.
+		      KEY_COUNT.innerText = `${count}`;
+		    }
+		  };
+
+		  miunsBtns.onclick = function (e) {
+		    if (count == 1) {
+		      alert("예약 가능한 인원수 미만입니다.");
+		    } else {
+		      count--;
+		      quantityInput.value = count;
+		      resultCount.innerText = `${count}`;
+		      KEY_COUNT.innerText = `${count}`;
+		    }
+		  };
+
+		  reserveBTN.onclick = function () {
+		    let time = document.querySelector(".decide_time").innerText;
+		    let people = document.querySelector(".decide_count").innerText;
+		    let userName = document.querySelector("#userName").value;
+		    let userCall = document.querySelector("#userCall").value;
+		    let userEmail = document.querySelector("#userEmail").value;
+
+		    if (!(time == "")) {
+		      console.log("true");
+		      if (people == "") {
+		        alert("인원을 선택해 주세요.");
+		      } else {
+		        alert("예약이 완료되었습니다");
+		        script.println("location.href = 'bookAction.jsp'");
+		      }
+		    } else {
+		      alert("시간을 선택해 해주세요.");
+		    }
+		  };
+		}); 
+	</script>
+
+
+</body>
+</html>

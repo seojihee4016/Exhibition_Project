@@ -1,0 +1,509 @@
+@charset "EUC-KR";
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+ol, ul, li {
+	list-style: none;
+}
+
+textarea, input {
+	-webkit-appearance: none;
+	-webkit-border-radius: 0;
+}
+
+.wrap {
+	width: 100%;
+	height: 100%;
+}
+
+.booking_wrap {
+	width: 100%;
+	height: 100%;
+	max-width: 720px;
+	margin: 0 auto;
+	padding-bottom: 20px;
+	background-color: #e9ecef;
+}
+
+.accordion_cont {
+	padding: 100 100px;
+	background-color: #fff;
+	border-bottom: 1px solid #ecf0f2;
+}
+
+.accordion_cont .acc_head {
+	position: relative;
+	padding: 15px 0;
+}
+
+.accordion_cont .acc_head .acc_tit {
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.accordion_cont .acc_head .acc_btn {
+	position: absolute;
+	top: 15px;
+	right: 5px;
+}
+
+.accordion_cont .acc_body {
+	display: none;
+	padding-bottom: 20px;
+	border-top: 1px solid #000;
+	box-sizing: border-box;
+}
+
+.accordion_cont.active .acc_body {
+	display: block;
+}
+
+.accordion_cont.active {
+	border-bottom: 1px solid #000;
+}
+
+/* ===========================
+  datepicker
+============================== */
+.booking_canlender .ui-widget.ui-widget-content {
+	border: none;
+}
+
+.booking_canlender .ui-widget-header {
+	border: none;
+	background-color: #fff;
+}
+
+.booking_canlender .ui-state-default, .booking_canlender .ui-widget-content .ui-state-default,
+	.booking_canlender .ui-widget-header .ui-state-default,
+	.booking_canlender .ui-button, .booking_canlender .ui-button.ui-state-disabled:hover,
+	.booking_canlender .ui-button.ui-state-disabled:active {
+	border: none;
+	background-color: transparent;
+	color: #333;
+}
+
+.booking_canlender .ui-datepicker {
+	width: 100%;
+	margin: 0 auto;
+	padding: 20px 0 0;
+	box-sizing: border-box;
+}
+
+.booking_canlender .ui-datepicker table {
+	margin: 0 auto;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.booking_canlender .ui-datepicker td span, .booking_canlender .ui-datepicker td a
+	{
+	height: 50px;
+	padding: 7px 0 0;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.booking_canlender .ui-widget-content {
+	font-size: 22px;
+}
+
+.booking_canlender .ui-datepicker-prev:hover {
+	background-color: transparent;
+	border: none;
+	left: 2px;
+	top: 2px;
+	cursor: pointer;
+}
+
+.booking_canlender .ui-datepicker-next:hover {
+	background-color: transparent;
+	border: none;
+	right: 2px;
+	top: 2px;
+	cursor: pointer;
+}
+
+/* 주말 표시 */
+.booking_canlender td.ui-datepicker-week-end:first-child a {
+	color: #f82222;
+}
+
+.booking_canlender td.ui-datepicker-week-end:last-child a {
+	color: #379afc;
+}
+
+/* highlight */
+.booking_canlender .ui-state-highlight, .booking_canlender .ui-widget-content .ui-state-highlight,
+	.booking_canlender .ui-widget-header .ui-state-highlight {
+	position: relative;
+	color: #000;
+	font-weight: bold;
+}
+
+.booking_canlender .ui-widget-content .ui-state-highlight:after {
+	content: "오늘";
+	position: absolute;
+	width: 100%;
+	bottom: 10px;
+	left: 0;
+	font-size: 10px;
+	color: inherit;
+	text-align: center;
+}
+
+/* Active */
+.booking_canlender .ui-state-active, .booking_canlender .ui-widget-content .ui-state-active,
+	.booking_canlender .ui-widget-header .ui-state-active,
+	.booking_canlender a.ui-button:active, .booking_canlender .ui-button:active,
+	.booking_canlender .ui-button.ui-state-active:hover {
+	background-color: #0aba16;
+	color: #fff !important;
+	font-weight: bold;
+}
+
+/* holiday */
+.booking_canlender td.ko_holiday a.ui-state-default {
+	color: #f82222;
+}
+
+/* Hover */
+.booking_canlender td .ui-state-default:hover, .booking_canlender td.ui-datepicker-week-end a:hover
+	{
+	color: #0aba16;
+}
+
+/* 시간 선택 
+-------------------------- */
+.item_time {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: row;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
+	justify-content: flex-start;
+	-webkit-box-align: start;
+	-ms-flex-align: start;
+	padding: 0 5px;
+}
+
+.item_time>li {
+	flex-basis: calc(25% - 4px);
+	margin: 0 2px 4px;
+}
+
+.item_time label {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 40px;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+
+.item_time label>span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	font-size: 14px;
+	color: #333;
+	line-height: 38px;
+}
+
+.item_time label>input[type="radio"] {
+	background-color: #edfbdc;
+	appearance: none;
+	border: 1px solid #c8e1af;
+	border-radius: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.item_time label>input[type="radio"]:checked {
+	background-color: #0aba16;
+}
+
+.item_time label>input[type="radio"]:checked+span {
+	color: #fff;
+	font-weight: bold;
+}
+
+.item_time label>input[type="radio"].disabled, .item_time label>input[type="radio"]:disabled
+	{
+	background-color: #f4f7f8;
+	border-color: #e2e5e8;
+	box-shadow: none;
+	opacity: 0.35;
+	cursor: not-allowed;
+}
+
+.item_time label>input[type="radio"].disabled+span, .item_time label>input[type="radio"]:disabled+span
+	{
+	color: #333;
+	opacity: 0.35;
+	cursor: not-allowed;
+}
+
+.time_txt {
+	padding: 10px 5px;
+	font-size: 17px;
+	font-weight: normal;
+}
+
+/* 
+  인원수 
+----------------------------- */
+.disTable {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.disCell {
+	display: table-cell;
+}
+
+.visit_cont .guide {
+	padding: 30px 30px 30px;
+	box-sizing: border-box;
+	border-bottom: 1px solid #e1e1e1;
+	font-size: 14px;
+	color: #666;
+}
+
+.visit_cont .visit_group {
+	padding: 15px 0;
+}
+
+.visit_cont .visit_group .visit_tit {
+	font-size: 16px;
+	color: #000;
+	font-weight: bold;
+}
+
+.visit_group .visit_control {
+	width: 170px;
+	vertical-align: top;
+}
+
+.visit_group .visit_control:after {
+	content: "";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.visit_group .visit_control>* {
+	float: left;
+}
+
+.visit_group .visit_control .quantity_btn {
+	display: block;
+	width: 40px;
+	height: 40px;
+	box-sizing: border-box;
+	border: none;
+	border: 1px solid #e1e1e1;
+	background-color: #fff;
+	font-size: 20px;
+	text-align: center;
+	line-height: 38px;
+	font-weight: normal;
+	cursor: pointer;
+}
+
+.quantity_btn:focus ~ .quantity_input {
+	border-color: #0aba16;
+}
+
+.quantity_btn:focus {
+	border-color: #0aba16;
+}
+
+.visit_group .visit_control .quantity_input {
+	display: block;
+	width: 40px;
+	height: 40px;
+	box-sizing: border-box;
+	border: 1px solid #e1e1e1;
+	border-left: 0;
+	border-right: 0;
+	background-color: #fff;
+	font-size: 14px;
+	text-align: center;
+	line-height: 38px;
+	font-weight: normal;
+	appearance: none;
+	outline: none;
+}
+
+.visit_control .quantity_btn.plus_btn {
+
+	background-color: red;
+	color: #fff;
+}
+
+/*  알림니다.
+------------------- */
+.notice_cont {
+	padding: 30px 20px;
+	background-color: #fff;
+}
+
+.notice_cont .notice_box {
+	box-sizing: border-box;
+	border-radius: 5px;
+	background-color: #fff4f4;
+	padding: 15px 15px;
+}
+
+.notice_cont .tit {
+	color: #fc4c42;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.notice_cont .txt {
+	margin-top: 5px;
+	font-size: 14px;
+	color: #555;
+	line-height: 20px;
+}
+
+/*  예약내용 확인
+------------------------------ */
+.section_reception {
+	margin-top: 10px;
+	padding: 20px 20px;
+	background-color: #fff;
+}
+
+.section_reception .dl_list {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+	margin-top: 10px;
+}
+
+.section_reception .dl_list dt {
+	display: table-cell;
+	width: 60px;
+	font-size: 16px;
+	color: #242424;
+	font-weight: bold;
+}
+
+.section_reception .dl_list dd {
+	display: table-cell;
+	font-size: 16px;
+	color: #424242;
+}
+
+.section_reception .dl_list .decide_count {
+	color: #00cf5b;
+	font-weight: bold;
+}
+
+/*  예약자 정보
+-------------------- */
+.section_reception .form_info {
+	margin-top: 20px;
+}
+
+.section_reception .dl_info:after {
+	content: "";
+	display: block;
+	clear: both;
+	height: 0;
+}
+
+.section_reception .dl_info+.dl_info {
+	margin-top: 10px;
+}
+
+.section_reception .form_info dt {
+	float: left;
+	width: 80px;
+	vertical-align: middle;
+}
+
+.section_reception .form_info .info_label {
+	font-size: 14px;
+	color: #242424;
+}
+
+.section_reception .form_info dd {
+	float: left;
+	width: calc(100% - 80px);
+}
+
+.section_reception .form_info .info_input {
+	width: 100%;
+	height: 40px;
+	padding: 0 30px 0 5px;
+	box-sizing: border-box;
+	border: 1px solid #eee;
+	font-size: 14px;
+	color: #333;
+	outline: none;
+}
+
+.section_reception .form_info .info-textarea {
+	width: 100%;
+	height: 60px;
+	padding: 5px 30px 5px 5px;
+	box-sizing: border-box;
+	border: 1px solid #eee;
+	font-size: 14px;
+	color: #333;
+	outline: none;
+	-webkit-appearance: none;
+	resize: vertical;
+}
+
+/* seller
+----------------------------- */
+.accordion_cont.seller {
+	margin-top: 10px;
+	border-bottom: 0;
+}
+
+.accordion_cont.seller .acc_tit {
+	font-size: 18px;
+}
+
+.accordion_cont.seller .acc_body {
+	padding: 15px 0 20px;
+	border-color: #ecf0f2;
+	font-size: 14px;
+	color: #555;
+}
+
+.bottom_btn_group {
+	margin: 30px 20px;
+}
+
+.bottom_btn_group .reserve_btn {
+	display: block;
+	width: 100%;
+	height: 60px;
+	box-sizing: border-box;
+	border: none;
+	border-radius: 5px;
+	background-color: red;
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
+	outline: none;
+	font-weight: bold;
+}

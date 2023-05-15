@@ -1,0 +1,484 @@
+@charset "EUC-KR";
+
+@import
+	url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+@import
+	url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
+
+@import
+	url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap')
+	;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border: 0px solid salmon;
+}
+
+img {
+	width: 25px;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 0.8rem;
+	line-height: 1rem;
+	color: #999;
+	letter-spacing: 0.1px
+}
+
+h1, h2, h3 {
+	font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+	font-size: 4rem;
+	line-height: 4rem;
+	text-transform: uppercase;
+}
+
+h2 {
+	font-size: 2.4rem;
+	line-height: 2.4rem;
+	text-transform: uppercase;
+}
+
+h3 {
+	color: black;
+	font-size: 1.4rem;
+	line-height: 1.4rem;
+}
+
+h4, h5 {
+	font-family: 'Roboto', sans-serif;
+}
+
+h4 {
+	font-size: 1.1rem;
+	line-height: 1.1rem;
+}
+
+h5 {
+	font-size: 0.7rem;
+	line-height: 0.7rem;
+}
+
+a:link {
+	color: #666;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #666;
+}
+
+a:hover {
+	color: red;
+}
+
+a:active {
+	color: red;
+}
+
+button {
+	color: white;
+	width: 100%;
+	height: 50px;
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	padding: 10px 30px;
+	border: 1px solid silver;
+	background: red;
+	transition: 0.3s;
+}
+
+button:hover {
+	background: crimson;
+	color: white;
+	cursor: pointer;
+}
+
+input.text {
+	
+}
+
+ul li {
+	list-style: none;
+}
+
+article {
+	width: 420px;
+	margin: 5rem auto;
+	padding: 3%;
+	border: 1px solid silver;
+}
+
+header {
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+header div {
+	padding: 30px;
+}
+
+header ul {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+}
+
+header ul li {
+	width: 50%;
+	padding-bottom: 0.5rem;
+	border-bottom: 2px solid silver;
+}
+
+/*start*/
+.login div {
+	margin-top: 2rem;
+}
+
+.login img {
+	vertical-align: middle;
+}
+
+.login>:nth-child(1) input, .login>:nth-child(2) input {
+	border-bottom: 1px solid silver;
+	margin-left: 8px;
+	height: 100%;
+	font-size: 1rem;
+	width: 90%;
+}
+
+.login>:nth-child(1), .login>:nth-child(2) {
+	height: 2rem;
+}
+
+.login>:nth-child(3) {
+	text-align: center;
+}
+
+.login>:nth-child(4) ul {
+	display: flex;
+	justify-content: space-around;
+}
+
+.login>:nth-child(5)>ul {
+	margin-top: 1rem;
+}
+
+.login>:nth-child(5)>ul li {
+	margin: 0.5rem 0 0.5rem 0;
+	font-size: 1rem;
+	text-align: left;
+	padding-left: 20%;
+	height: 3rem;
+	border: 1px solid silver;
+	color: black;
+	padding-top: 15px;
+}
+
+.login>:nth-child(5) img {
+	width: 20px;
+}
+
+.find>:nth-child(1) input {
+	padding: 0.5rem;
+	font-size: 1rem;
+	width: 100%;
+	height: 3rem;
+	border: 1px solid silver;
+}
+
+.find>:nth-child(2) ul {
+	width: 100%;
+}
+
+.find>:nth-child(2) ul li {
+	width: auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.find>:nth-child(2) input {
+	margin-top: 0.3rem;
+	padding: 0.3rem;
+	height: 3rem;
+	width: 26%;
+	border: 1px solid silver;
+}
+
+.find>:nth-child(2) select {
+	margin-top: 0.3rem;
+	padding: 0.3rem;
+	height: 3rem;
+	width: 22%;
+	border: 1px solid silver;
+}
+
+.find>:nth-child(3) {
+	margin-top: 1rem;
+}
+
+/*email*/
+.email div {
+	margin-top: 1rem;
+}
+
+.email>:nth-child(2) ul>:first-child input {
+	width: 100%;
+}
+
+.email>:nth-child(2) input {
+	margin-top: 0.3rem;
+	padding: 0.3rem;
+	height: 3rem;
+	width: 35%;
+	border: 1px solid silver;
+}
+
+.email>:nth-child(2) select {
+	margin-top: 0.3rem;
+	padding: 0.3rem;
+	height: 3rem;
+	width: 24%;
+	border: 1px solid silver;
+}
+
+/*member*/
+.member {
+	text-align: center;
+}
+
+.member div {
+	margin-top: 1rem;
+}
+
+.member img {
+	vertical-align: middle;
+}
+
+.member>:nth-child(3)>ul {
+	margin-top: 1rem;
+}
+
+.member>:nth-child(3)>ul li {
+	margin: 0.5rem 0 0.5rem 0;
+	font-size: 1rem;
+	text-align: left;
+	padding-left: 20%;
+	height: 3rem;
+	border: 1px solid silver;
+	color: black;
+	padding-top: 15px;
+}
+
+.member>:nth-child(3) img {
+	width: 20px;
+}
+
+/*agree*/
+.agree>:first-child {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.agree>:first-child h4 {
+	border: none;
+	color: red;
+	padding-left: 0.3rem;
+}
+
+.agree table tr>:last-child {
+	border: 1px solid silver;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+.agree table h4 {
+	color: black;
+	text-align: left;
+	width: 100%;
+	padding-bottom: 0.3rem;
+	border-bottom: 1px solid silver;
+	color: black;
+}
+
+.agree table {
+	width: 100%;
+}
+
+.agree tr {
+	width: 100%;
+	margin: 0.5rem 0 0.5rem 0;
+	font-size: 0.8rem;
+	text-align: center;
+	height: 3rem;
+	display: flex;
+	border-bottom: 1px solid silver;
+	display: flex;
+	justify-content: space-between;
+}
+
+.agree input {
+	margin-right: 0.3rem;
+}
+
+.agree tr td {
+	margin: auto 0;
+}
+
+.agree>:nth-child(4) {
+	display: flex;
+	justify-content: space-between;
+}
+
+.agree>:nth-child(1) {
+	margin-top: 2rem;
+}
+
+.agree>:nth-child(2) {
+	margin-top: 2rem;
+}
+
+.agree>:nth-child(4) {
+	margin-top: 2rem;
+}
+
+.agree button {
+	margin-top: 1rem;
+	width: 48%;
+}
+
+.agree>:nth-child(5)>:first-child {
+	background: black;
+	color: white;
+}
+
+/*detail*/
+.detail p {
+	text-align: right;
+	color: red;
+}
+
+.detail div {
+	margin-top: 0.3rem;
+}
+
+.detail>:nth-child(1) input {
+	width: 30%;
+}
+
+.detail>:nth-child(1) select {
+	width: 33%;
+}
+
+.detail>:nth-child(1) ul>:nth-child(4) input {
+	background: #f8f7c7;
+}
+
+.detail>:nth-child(2) ul>:first-child input {
+	width: 100%;
+}
+
+.detail>:nth-child(2) ul>:last-child>:nth-child(1) {
+	width: 30%;
+}
+
+.detail>:nth-child(2) ul>:last-child>:nth-child(2), .detail>:nth-child(2) ul>:last-child>:nth-child(3)
+	{
+	width: 20%;
+}
+
+.detail>:nth-child(3) select {
+	width: 32%;
+}
+
+.detail>:nth-child(3) input {
+	width: 33%;
+}
+
+.detail>:nth-child(4) ul>:nth-child(2)>:nth-child(3) {
+	width: 30%;
+}
+
+.detail>:nth-child(4) ul>:nth-child(2)>:nth-child(4), .detail>:nth-child(4) ul>:nth-child(2)>:nth-child(5)
+	{
+	width: 20%;
+}
+
+.detail>:nth-child(4) ul>:nth-child(3) {
+	text-align: center;
+}
+
+.detail>:nth-child(5) button {
+	background: black;
+	width: 48%;
+}
+
+.detail>:nth-child(5) ul>:first-child input {
+	width: 50%;
+}
+
+.detail>:nth-child(5) ul>:last-child input {
+	width: 49%;
+}
+.detail>:nth-child(6) button {
+	background: black;
+	width: 48%;
+}
+
+.detail>:nth-child(6) ul>:first-child input {
+	width: 50%;
+}
+
+.detail>:nth-child(6) ul>:last-child input {
+	width: 49%;
+}
+
+.detail input[type="text"], .detail input[type="password"], select {
+	margin-top: 0.3rem;
+	padding: 0.3rem;
+	height: 3rem;
+	border: 1px solid silver;
+}
+
+.detail input[type="password"] {
+	width: 100%;
+}
+
+.detail>:last-child {
+	display: flex;
+	justify-content: space-between;
+}
+
+.detail>:last-child>:first-child {
+	background: black;
+}
+
+.detail>:last-child button {
+	margin-top: 3rem;
+	width: 48%;
+}
+
+.finish>:first-child h3, h4 {
+	margin: 2rem;
+	text-align: center;
+}
+
+.finish>:last-child {
+	margin-top: 3rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.finish>:last-child>:first-child {
+	background: black;
+}
+
+.finish button {
+	width: 48%;
+}
