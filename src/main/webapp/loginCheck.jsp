@@ -11,6 +11,7 @@
 			성공하셨습니다.</small>
 	</h1>
 	<a href="logOut.jsp">로그아웃</a>
+	<a href="admin.jsp">마이 페이지 이동</a>
 
 	<%--
 	<script>
