@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="join_login.css" rel="stylesheet" type="text/css" />
+<link href="css/join_login.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
