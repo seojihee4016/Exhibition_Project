@@ -7,11 +7,21 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.*"%>
+<%@ page import="exhibition.dao.MyDateUtil"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+	crossorigin="anonymous">
+</head>
+<body>
+	<%@ include file = "navBar.jsp" %>
 </head>
 <body>
 	<%
@@ -20,6 +30,7 @@
 	//if (user_id == null || !user_id.equals("admin")) { //순서바뀌면 에러발생하므로 항상 null 먼저 비교할 것
 	//	response.sendRedirect("login.jsp");
 	//}
+	
 
 	request.setCharacterEncoding("UTF-8");
 	int seq = Integer.parseInt(request.getParameter("seq"));
@@ -39,17 +50,22 @@
 				style="width: 550px; height: 250px;">
 			<br>
 			<h3><%=exhibitionDto.getDp_name()%></h3>
-			@
-			<%=exhibitionDto.getDp_place()%><br> 전시기간 :
-			<%=exhibitionDto.getDp_start()%>
+			전시 장소 : <%=exhibitionDto.getDp_place()%><br>
+			<br><span>전시 기간 :</span>
+			<%=MyDateUtil.convertStringToUtilDate(exhibitionDto.getDp_start())%>
 			~
-			<%=exhibitionDto.getDp_end()%><br> 주최 및 후원 :
-			<%=exhibitionDto.getDp_sponsor()%><br> 관람 시간 :
-			<%=exhibitionDto.getDp_viewtime()%><br> 관람 요금 :
-			<%=exhibitionDto.getDp_viewcharge()%><br> 전시 부문 :
-			<%=exhibitionDto.getDp_art_part()%><br> 출품 작가 :
-			<%=exhibitionDto.getDp_artist()%><br> 관람 포인트 :
-			<%=exhibitionDto.getDp_viewpoint()%><br> 전시 설명 :
+			<%=MyDateUtil.convertStringToUtilDate(exhibitionDto.getDp_end())%><br>
+			<br>주최 및 후원 : <%=exhibitionDto.getDp_sponsor()%><br>
+			<br>관람 시간 : <%=exhibitionDto.getDp_viewtime()%><br>
+			<br>관람 요금 :
+			<%=exhibitionDto.getDp_viewcharge()%><br>
+			<br>전시 부문 :
+			<%=exhibitionDto.getDp_art_part()%><br>
+			<br>출품 작가 :
+			<%=exhibitionDto.getDp_artist()%><br>
+			<br>관람 포인트 : 
+			<%=exhibitionDto.getDp_viewpoint()%><br>
+			<br>전시 설명 :
 			<%=exhibitionDto.getDp_info()%><br>
 			</td>
 			<button onclick="moveBookMainPage()">예약하기</button>

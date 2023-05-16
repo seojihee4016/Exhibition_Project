@@ -7,20 +7,39 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.*"%>
+<%@ page import="exhibition.dao.MyDateUtil"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+	crossorigin="anonymous">
+</head>
+<body>
+	<%@ include file = "navBar.jsp" %>
 </head>
 <body>
 	<%
+	//1. 로그인세션제어(관리자는 제외)
+	//String user_id = (String) session.getAttribute("user_id");
+	//if (user_id == null || !user_id.equals("admin")) { //순서바뀌면 에러발생하므로 항상 null 먼저 비교할 것
+		//response.sendRedirect("login.jsp");
+	//}
+	
 	ExhibitionDao exhibitionDao = new ExhibitionDao();
 	// 목록 가져오는 메소드
 	exhibitionDao.getExhibitionMainList();
 	ArrayList exhibitionMainList = exhibitionDao.getExhibitionMainList();
 	%>
+	
 	<h1>메인 페이지</h1>
+	
 
 	<table>
 
@@ -38,7 +57,9 @@
 				id="<%=exhibitionDto.getDp_seq()%>"
 				style="width: 350px; height: 250px;" class="<%=classAttr%> imgs"><br>
 				<h3><%=exhibitionDto.getDp_name()%></h3> @ <%=exhibitionDto.getDp_place()%><br>
-				<%=exhibitionDto.getDp_start()%> ~ <%=exhibitionDto.getDp_end()%><br></td>
+				<%=MyDateUtil.convertStringToUtilDate(exhibitionDto.getDp_start())%>
+				 ~ 
+				<%=MyDateUtil.convertStringToUtilDate(exhibitionDto.getDp_end())%><br></td>
 		</tr>
 		<%
 		}
