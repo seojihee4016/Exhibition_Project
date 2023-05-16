@@ -35,6 +35,10 @@
 	%>
 	<input type="button" value="회원전체목록(관리자용)"
 		onclick="location.href='memberList.jsp'">
+
+
+	<input type="button" value="예약 현황 확인(관리자용)"
+		onclick="location.href='memberList.jsp'">
 	<%
 	}
 	%>

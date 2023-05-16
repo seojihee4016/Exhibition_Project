@@ -137,11 +137,14 @@
 									<input type="number" class="quantity_input" value="1" readonly>
 									<button type="button" class="quantity_btn plus_btn">+</button>
 								</div>
+
+
 							</section>
 						</div>
 					</section>
-				</div>
 
+				</div>
+				
 
 
 
@@ -178,40 +181,40 @@
 				<section class="section_reception">
 					<h3>예약자 정보</h3>
 					<div class="form_info">
-
-						<dl class="dl_info">
-							<dt>
-								<label for="userName" class="info_label">예약자</label>
-							</dt>
-							<dd>
-								<input type="text" id="userName" class="info_input">
-							</dd>
-						</dl>
-						<dl class="dl_info">
-							<dt>
-								<label for="userCall" class="info_label">연락처</label>
-							</dt>
-							<dd>
-								<input type="text" id="userCall" class="info_input">
-							</dd>
-						</dl>
-						<dl class="dl_info">
-							<dt>
-								<label for="userEmail" class="info_label">이메일</label>
-							</dt>
-							<dd>
-								<input type="text" id="userEmail" class="info_input">
-							</dd>
-						</dl>
-						<dl class="dl_info">
-							<dt>
-								<label for="textarea" class="info_label">전시회 명</label>
-							</dt>
-							<dd>
-								<span class="decide_date"></span><span class="decide_time"></span>
-							</dd>
-						</dl>
-
+						<form action="bookAction.jsp">
+							<dl class="dl_info">
+								<dt>
+									<label for="userName" class="info_label">예약자</label>
+								</dt>
+								<dd>
+									<input type="text" id="userName" class="info_input">
+								</dd>
+							</dl>
+							<dl class="dl_info">
+								<dt>
+									<label for="userCall" class="info_label">연락처</label>
+								</dt>
+								<dd>
+									<input type="text" id="userCall" class="info_input">
+								</dd>
+							</dl>
+							<dl class="dl_info">
+								<dt>
+									<label for="userEmail" class="info_label">이메일</label>
+								</dt>
+								<dd>
+									<input type="text" id="userEmail" class="info_input">
+								</dd>
+							</dl>
+							<dl class="dl_info">
+								<dt>
+									<label for="textarea" class="info_label">전시회 명</label>
+								</dt>
+								<dd>
+									<span class="decide_date"></span><span class="decide_time"></span>
+								</dd>
+							</dl>
+						</form>
 					</div>
 				</section>
 				<section class="accordion_cont seller">
@@ -227,6 +230,7 @@
 				</div>
 			</div>
 		</div>
+	
 	</form>
 
 
@@ -239,8 +243,8 @@
 		  const resultTime = document.getElementById("result_time");
 		  const accBtn = document.querySelectorAll(".acc_btn");
 		  const resultCount = document.getElementById("result_count");
-		  //const plusBtn = document.querySelector(".plus_btn");
-		  //const miunsBtn = document.querySelector(".minus_btn");
+		  const plusBtn = document.querySelector(".plus_btn");
+		  const miunsBtn = document.querySelector(".minus_btn");
 		  const quantityInput = document.querySelector(".quantity_input");
 		  const KEY_DATE = document.querySelector(".decide_date");
 		  const KEY_TIME = document.querySelector(".decide_time");
@@ -374,7 +378,7 @@
 
 		  //시간 막아 놓기
 		  function disabled() {
-		    const housrs = ("0" + now.getHours()).slice(-2);
+		    const housrs = ("0" + now.getHours()).slice(0);
 		    const miuntes = ("0" + now.getMinutes()).slice(-2);
 		    //console.log(typeof(timeSpan)); //object
 
@@ -397,7 +401,7 @@
 
 		  //인원 수 카운트
 		  let count = 1;
-		  plusBtns.onclick = function (e) {
+		  plusBtn.onclick = function (e) {
 		    if (count == 4) {
 		      alert("예약 가능한 인원수를 초과했습니다.");
 		    } else {
@@ -408,7 +412,7 @@
 		    }
 		  };
 
-		  miunsBtns.onclick = function (e) {
+		  miunsBtn.onclick = function (e) {
 		    if (count == 1) {
 		      alert("예약 가능한 인원수 미만입니다.");
 		    } else {
@@ -421,7 +425,7 @@
 
 		  reserveBTN.onclick = function () {
 		    let time = document.querySelector(".decide_time").innerText;
-		    let people = document.querySelector(".decide_count").innerText;
+		    let people = document.querySelectorAll(".decide_count").innerText;
 		    let userName = document.querySelector("#userName").value;
 		    let userCall = document.querySelector("#userCall").value;
 		    let userEmail = document.querySelector("#userEmail").value;
@@ -432,7 +436,8 @@
 		        alert("인원을 선택해 주세요.");
 		      } else {
 		        alert("예약이 완료되었습니다");
-		        script.println("location.href = 'bookAction.jsp'");
+		       
+		        "location.href='loginCheck.jsp'";
 		      }
 		    } else {
 		      alert("시간을 선택해 해주세요.");
