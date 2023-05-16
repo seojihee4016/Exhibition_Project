@@ -73,3 +73,24 @@ UPDATE exhibitionData SET dp_charge_child = 12000 WHERE dp_seq = 707;
 SELECT * from exhibitionData 
 where TO_CHAR(dp_end, 'YYYYMMDD') >= '20230402'
 order by dp_end desc;
+
+
+
+--예약 테이블
+CREATE TABLE book(
+id number(32) UNIQUE, --회원 고유 번호
+DP_SEQ number(6), --전시회 고유 번호
+user_id varchar2(40) NOT NULL, --회원 아이디
+name varchar2(20) NOT NULL , --회원 이름
+phone  varchar2(20) NOT NULL , --회원 전화번호
+email varchar2(45) NOT NULL , --회원 이메일
+peopleCount int NOT NULL, --총 인원 수
+bookDate date NOT NULL, --예약 날짜
+price int NOT NULL, --가격
+adult int NOT NULL,
+teenager int NOT NULL,
+child int NOT NULL,
+CONSTRAINT book PRIMARY KEY (user_id, email, phone, DP_SEQ)
+);
+
+
