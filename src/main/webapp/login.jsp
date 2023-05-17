@@ -42,7 +42,7 @@
 				</div>
 				<div>
 					<img src="https://cdn-icons-png.flaticon.com/512/3064/3064155.png"
-						alt=""> <input type="text" name="password" placeholder="비밀번호를 입력하세요">
+						alt=""> <input type="password" name="password" placeholder="비밀번호를 입력하세요">
 				</div>
 		</form>
 
