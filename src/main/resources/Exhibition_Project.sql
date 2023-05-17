@@ -89,8 +89,7 @@ bookDate date NOT NULL, --예약 날짜
 price int NOT NULL, --가격
 adult int NOT NULL,
 teenager int NOT NULL,
-child int NOT NULL,
-CONSTRAINT book PRIMARY KEY (user_id, email, phone, DP_SEQ)
+child int NOT NULL
 );
 
 
