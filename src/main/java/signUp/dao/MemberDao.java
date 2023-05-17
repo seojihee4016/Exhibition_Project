@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import exhibition.dto.ExhibitionDto;
 import signUp.dto.MemberDto;
 import signUp.oracle.DBConnectionManager;
 
@@ -153,6 +154,49 @@ public class MemberDao {
 			DBConnectionManager.close(rs, psmt, conn);
 		}
 		return memberList;
+	}
+	
+	public MemberDto selectMemberInfoById(String user_id) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		MemberDto memberDto = null;
+
+		try {
+			conn = DBConnectionManager.getConnection();
+
+			// 쿼리문!
+			String sql = "SELECT * FROM memberInfo WHERE user_id = ?"; // 들어온 아이디의 모든 정보를 출력하겠다
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, user_id);
+			// 첫번째 매개변수로 들어온 애를 id에
+
+			rs = psmt.executeQuery(); // 쿼리를 실행!!
+
+			if (rs.next()) {
+				memberDto = new MemberDto();
+
+				memberDto.setUser_id(rs.getString("user_id"));
+				memberDto.setPassword(rs.getString("password"));
+				memberDto.setName(rs.getString("name"));
+				memberDto.setPhone(rs.getString("phone"));
+				memberDto.setGender(rs.getString("gender"));
+				memberDto.setBirthDate(rs.getString("birthDate"));
+				memberDto.setEmail(rs.getString("email"));
+				memberDto.setId(rs.getInt("id"));
+			}
+
+			// DB에 쿼리문 실행
+			// 쿼리 결과를 반환 -> 활용
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.close(rs, psmt, conn);
+		}
+
+		return memberDto;
 	}
 
 	/** 로그인 아이디로 회원정보 불러오기 */
