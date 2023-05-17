@@ -17,7 +17,8 @@
 <title>Insert title here</title>
 
 <body>
-
+	
+	<%@ include file="/navBar.jsp" %>
 
 	<%
 	//1. 로그인세션제어(관리자는 제외)
