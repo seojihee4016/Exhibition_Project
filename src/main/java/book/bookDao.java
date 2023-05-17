@@ -3,7 +3,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import signUp.dto.MemberDto;
 import signUp.oracle.DBConnectionManager;
 public class bookDao {
 
@@ -52,4 +54,59 @@ public class bookDao {
 		return result;
 	}
 
+
+	//예약 회원
+
+	public ArrayList getBookList() {
+
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+
+		// 가변길이 배열 생성
+		ArrayList bookList = new ArrayList();
+
+		try {
+			conn = DBConnectionManager.getConnection();
+
+			String SQL = "SELECT * FROM book";
+
+			psmt = conn.prepareStatement(SQL); // SQL 실행 객체
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				bookDto bookDTO = new bookDto();// 1.memberDto 객체생성
+				bookDTO.setId(rs.getInt("id"));
+				bookDTO.setBookDate(rs.getString("bookDate"));
+				bookDTO.setName(rs.getString("name"));
+				bookDTO.setPhone(rs.getString("phone"));
+				bookDTO.setEmail(rs.getString("email"));
+				bookDTO.setPeopleCount(rs.getInt("peopleCount"));
+				bookDTO.setAdult(rs.getInt("adult"));
+				bookDTO.setTeenager(rs.getInt("teenager"));
+				bookDTO.setChild(rs.getInt("child"));
+				bookDTO.setPrice(rs.getInt("price"));
+				
+				
+				// 여기까지가 한 행의 데이터를 변수mb에 저장한 것임. while로 모든 행을 반복해서 변수mb에 저장
+
+				// 가변배열(ArrayList)에 위의 데이터mb를 저장
+				// 즉 배열 한 칸에 회원 1명의 정보를 저장함.
+				bookList.add(bookDTO); // 업캐스팅 (MemberDto-> Object)
+				// System.out.println(memberList); 배열한 칸에 잘 들어갔는지 콘솔로 확인
+			}
+
+			System.out.println("정보검색완료");
+			// System.out.println(memberList);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.close(rs, psmt, conn);
+		}
+		return bookList;
+	}
+
+	
 }

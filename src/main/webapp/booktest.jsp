@@ -23,6 +23,11 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 	crossorigin="anonymous">
 </head>
 <body>
+	<link rel="stylesheet"
+		href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
 	<%
 	String user_id = (String) session.getAttribute("user_id");
 
@@ -37,19 +42,23 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 	}
 	%>
 
-	<form action="booktest_proc.jsp" method="post">
-		<input type="text" id="seq" name="seq" value="<%=seq%>" hidden> 날짜<input
-			type="date" name="bookDate"> <input type="hidden" name="cmd"
-			value="order">
+	<form action="booktest_proc.jsp" method="post" name='bookForm'>
+		<input type="text" id="seq" name="seq" value="<%=seq%>" hidden>
+		날짜<input type="date" name="bookDate" class="decide_time"
+			id="select_day">
 		<div class="bookCheckdiv" id="bookCheck">
+
+			<%--체크 박스--%>
 			<div class="row data">
 				<div class="check">
 					<input type="checkbox" name="buy" value="260" checked=""
 						onclick="javascript:bookCheck.checkItem();">&nbsp;
 				</div>
 			</div>
+
+
 			<div class="subdiv">
-				<div class="bookCheckprice">
+				<div class="class="decide_count">
 					<input type="hidden" name="p_price" id="p_price1" class="p_price"
 						value="17000">성인 17,000원
 				</div>
@@ -57,17 +66,19 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 					<div class="updown">
 						<input type="text" name="p_num1" id="p_num1" size="2"
 							maxlength="1" class="p_num" value="0"
-							onkeyup="javascript:bookCheck.changePNum(1);"> <span
+							onkeyup="javascript:bookCheck.changePNum(1);" readonly> <span
 							onclick="javascript:bookCheck.changePNum(1);"><i
 							class="fas fa-arrow-alt-circle-up up"></i></span> <span
 							onclick="javascript:bookCheck.changePNum(1);"><i
-							class="fas fa-arrow-alt-circle-down down"></i></span>
+							class="fas fa-arrow-alt-circle-down down" readonly></i> </span>
 					</div>
 				</div>
 				<div class="sum">0원</div>
 			</div>
 			<div class="subdiv"></div>
 		</div>
+
+		<%--체크 박스--%>
 		<div class="row data">
 			<div class="subdiv">
 				<div class="check">
@@ -77,7 +88,7 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 
 			</div>
 			<div class="subdiv">
-				<div class="bookCheckprice">
+				<div class="decide_count">
 					<input type="hidden" name="p_price" id="p_price2" class="p_price"
 						value="15000">청소년 15,000원
 				</div>
@@ -85,16 +96,18 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 					<div class="updown">
 						<input type="text" name="p_num2" id="p_num2" size="2"
 							maxlength="4" class="p_num" value="0"
-							onkeyup="javascript:bookCheck.changePNum(2);"> <span
+							onkeyup="javascript:bookCheck.changePNum(2);" readonly> <span
 							onclick="javascript:bookCheck.changePNum(2);"><i
 							class="fas fa-arrow-alt-circle-up up"></i></span> <span
-							onclick="javascript:bookCheck.changePNum(2);"><i></i></span>
+							onclick="javascript:bookCheck.changePNum(2);"><i
+							class="fas fa-arrow-alt-circle-down down"></i></span>
 					</div>
 				</div>
 				<div class="sum">0원</div>
 			</div>
-
 		</div>
+
+		<%--체크 박스--%>
 		<div class="row data">
 			<div class="subdiv">
 				<div class="check">
@@ -104,7 +117,7 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 
 			</div>
 			<div class="subdiv">
-				<div class="bookCheckprice">
+				<div class="decide_count">
 					<input type="hidden" name="p_price" id="p_price3" class="p_price"
 						value="12000">아동 12,000원
 				</div>
@@ -112,7 +125,7 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 					<div class="updown">
 						<input type="text" name="p_num3" id="p_num3" size="2"
 							maxlength="4" class="p_num" value="0"
-							onkeyup="javascript:bookCheck.changePNum(3);"> <span
+							onkeyup="javascript:bookCheck.changePNum(3);" readonly> <span
 							onclick="javascript:bookCheck.changePNum(3);"><i
 							class="fas fa-arrow-alt-circle-up up"></i></span> <span
 							onclick="javascript:bookCheck.changePNum(3);"><i
@@ -124,13 +137,11 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 
 		</div>
 
-		</div>
+
 
 		<div class="right-align bookCheckrowcmd">
-			<a href="javascript:void(0)" class="abutton"
-				onclick="javascript:bookCheck.delCheckedItem();">선택상품삭제</a> <a
-				href="javascript:void(0)" class="abutton"
-				onclick="javascript:bookCheck.delAllItem();">비우기</a>
+			<a href="javascript:void(0)" class="abutton"></a><a
+				href="javascript:void(0)" class="abutton"></a>
 		</div>
 
 		<div class="bigtext right-align sumcount" id="sum_p_num">인원 수 :
@@ -139,14 +150,10 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 			0원</div>
 
 
-
-		<input id="g_Pcount" name="peopleCount" hidden>
-		<input id="g_Price" name="price" hidden>
-		<button type="submit" onclick=''>예약</button>
+		<input id="g_Pcount" name="peopleCount" hidden> <input
+			id="g_Price" name="price" hidden>
+		<button type="button" class="reserve_btn" id="next_btn" onclick="">예약</button>
 	</form>
-
-
-
 
 
 	<script>
@@ -154,39 +161,12 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 		let bookCheck = {
 			totalCount : 0,
 			totalPrice : 0,
-			//체크한 인원 수 없애기
-			delCheckedItem : function() {
-				document.querySelectorAll("input[name=buy]:checked").forEach(
-						function(item) {
-							item.parentElement.parentElement.parentElement
-									.remove();
-						});
-				//AJAX 서버 업데이트 전송
-
-				//전송 처리 결과가 성공이면
-				this.reCalc();
-				this.updateUI();
-			},
-			//장바구니 전체 비우기
-			delAllItem : function() {
-				document.querySelectorAll('.row.data').forEach(function(item) {
-					item.remove();
-				});
-				//AJAX 서버 업데이트 전송
-
-				//전송 처리 결과가 성공이면
-				this.totalCount = 0;
-				this.totalPrice = 0;
-				this.reCalc();
-				this.updateUI();
-			},
-			//재계산
+			
+			//계산
 			reCalc : function() {
 				this.totalCount = 0;
 				this.totalPrice = 0;
-				document
-						.querySelectorAll(".p_num")
-						.forEach(
+				document.querySelectorAll(".p_num").forEach(
 								function(item) {
 									if (item.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.firstElementChild.checked == true) {
 										var count = parseInt(item
@@ -198,7 +178,7 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 									}
 								}, this); // forEach 2번째 파라메터로 객체를 넘겨서 this 가 객체리터럴을 가리키도록 함. - thisArg
 			},
-			//화면 업데이트
+			//인원 수, 합계 금액
 			updateUI : function() {
 				document.querySelector('#sum_p_num').textContent = '인원 수: '
 						+ this.totalCount.formatNumber() + '명';
@@ -208,6 +188,8 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 				document.querySelector("#g_Pcount").value = this.totalCount;
 				document.querySelector("#g_Price").value = this.totalPrice;
 			},
+			
+			
 			//개별 수량 변경
 			changePNum : function(pos) {
 				var item = document.querySelector('input[name=p_num' + pos
@@ -217,7 +199,7 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 						: event.target.classList.contains('down') ? p_num - 1
 								: event.target.value;
 
-				if (parseInt(newval) < 0 || parseInt(newval) > 4) {
+				if (parseInt(newval) < 0 || parseInt(newval) > 4) { //1~4까지 
 					return false;
 				}
 
@@ -229,18 +211,8 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 				item.parentElement.parentElement.nextElementSibling.textContent = (newval * price)
 						.formatNumber()
 						+ "원";
-				//AJAX 업데이트 전송
 
 				//전송 처리 결과가 성공이면    
-				this.reCalc();
-				this.updateUI();
-			},
-			checkItem : function() {
-				this.reCalc();
-				this.updateUI();
-			},
-			delItem : function() {
-				event.target.parentElement.parentElement.parentElement.remove();
 				this.reCalc();
 				this.updateUI();
 			}
@@ -257,5 +229,42 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 			return nstr;
 		};
 	</script>
+
+
+
+	<script>
+		document.getElementById('next_btn').addEventListener('click', function(e) {
+			var form = document.bookForm;
+			
+			var day = document.getElementById("select_day");
+			//예약 날짜 선택 확인
+			if (day.value.trim() == "") {
+				alert("날짜를 선택하세요.");
+				select_day.focus();
+				e.preventDefault(); //이벤트를 걸어서 폼으로 안 넘어가게 막기
+				return false;
+			}	
+			
+			//인원 수 선택 확인
+			var peopleSelect = document.querySelectorAll(".p_num");
+			var totalPeople = 0;
+
+			for (var i = 0; i < peopleSelect.length; i++) {
+			  totalPeople += parseInt(peopleSelect[i].value);
+			}
+			
+			console.log(totalPeople);
+			if (totalPeople < 1) {
+			  alert("인원 수를 1명 이상 선택하세요.");
+			  return;
+			}
+		
+			
+			//입력 값 전송
+			
+			form.submit();
+			
+		});
+		</script>
 </body>
 </html>

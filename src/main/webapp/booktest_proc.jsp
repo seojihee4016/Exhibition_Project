@@ -47,7 +47,7 @@
 	}
 	%>
 	<script>
-		location.href = './join.jsp';
+		location.href = './booktest.jsp';
 	</script>
 	<!-- login.jsp로 이동, 실패했을 때 ./join.jsp로 -->
 </body>
