@@ -80,7 +80,8 @@
 
 <script>
 	function moveBookMainPage() {
-		location.href = 'bookMain.jsp?seq='+<%=seq%>; // 다른 JSP 페이지의 경로
+		location.href = 'booktest.jsp?seq='+<%=seq%>; // 다른 JSP 페이지의 경로
 	}
+	
 </script>
 </html>
