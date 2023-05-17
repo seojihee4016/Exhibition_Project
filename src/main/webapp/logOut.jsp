@@ -9,7 +9,7 @@
 <body>
 	<%
 		session.invalidate(); //logout 처리 끝. 세션 정리
-		response.sendRedirect("login.jsp");
+		response.sendRedirect("main.jsp");
 	%>
 </body>
 </html>
