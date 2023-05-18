@@ -39,7 +39,6 @@
 					%><li class="nav-item">
 					<a class="nav-link" ><%=session.getAttribute("user_id")%>님</a></li>
 					<li class="nav-item"><a class="nav-link"  href="admin.jsp">마이페이지</a></li>
-					<li class="nav-item"><a class="nav-link" href="booktest.jsp">예약하기</a></li>
 					<li class="nav-item"><a class="nav-link" href="logOut.jsp" onclick="fnLogout(); return false;"
 					>로그아웃</a></li>
 					<%

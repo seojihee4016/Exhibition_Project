@@ -8,6 +8,8 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="java.util.*"%>
 <%@ page import="exhibition.dao.MyDateUtil"%>
+<%@ page import="exhibition.dao.StringToDate"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -80,7 +82,19 @@
 
 <script>
 	function moveBookMainPage() {
+		<% 
+		String endDate = exhibitionDto.getDp_end();
+		//Date date = new SimpledateFormat("yyyy-MM-dd HH:mm:ss").parse(endDate);
+		Date now = new Date();
+		if( StringToDate.convertStringToUtilDate(endDate) === now ) { %>
+		alert("이미 종료된 전시입니다.")
+		<% 
+		} else {
+		%>
 		location.href = 'booktest.jsp?seq='+<%=seq%>; // 다른 JSP 페이지의 경로
+		<%
+		}
+		%>
 	}
 	
 </script>
