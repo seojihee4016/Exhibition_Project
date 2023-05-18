@@ -24,8 +24,8 @@ public class DataInsert {
 		java.sql.Statement stmt = null;
 		Connection conn = null;
 		PreparedStatement psmt = null;
-		String filePath = "C:\\Users\\admin\\eclipse-workspace\\Exhibition_Project\\src\\main\\resources\\서울시립미술관 전시 현황.json";
-		// 초기화 해줘야 하는지???-------------------
+		String filePath = "src/main/resources/서울시립미술관 전시 현황.json";
+		// 초기화
 		int DP_SEQ = 0;
 		String DP_NAME = "";
 		String DP_SUBNAME = "";
@@ -44,7 +44,7 @@ public class DataInsert {
 		String DP_INFO = "";
 		String DP_MAIN_IMG = "";
 		String DP_LNK = "";
-		// ------------------------------------
+		
 		//insert into JDBC 로직
 			
 		try {
@@ -65,15 +65,7 @@ public class DataInsert {
 			//JSON 읽어와서 쿼리에 담기위한 사전작업
 			Reader reader = new FileReader(filePath);
 			System.out.println(reader);
-		    
-//		    JSONParser parser = new JSONParser();
-		    
-		    
-		    
-//		    Object obj = parser.parse(reader);
-//		    JSONArray jsonArr = (JSONArray)parser.parse(reader);
-//		    JSONObject jsonObj1 = (JSONObject) obj;
-//		    JSONArray jsonArr = (JSONArray) obj;
+
 		    
 		    JSONParser parser = new JSONParser();
 		    Object obj = parser.parse(reader); 
