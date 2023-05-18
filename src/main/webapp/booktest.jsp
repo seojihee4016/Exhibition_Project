@@ -300,34 +300,21 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 	</script>
 
 	<script>
-		//예약 시점
-		  let dateElement = document.getElementById('select_day');
-      let date = new Date(new Date().getTime()
-            - new Date().getTimezoneOffset() * 60000).toISOString().slice(
-            0, -5);
-      
-      // 왠지 dateElement.value이거 string 이라서 날짜 타입으로 변환시켜줘야 할듯?
-      let selectedDate = new Date(dateElement.value); 
-      
-      //dateElement.value = date;
 
-      dateElement.setAttribute("min", startDate);
-      dateElement.setAttribute("max", endDate);
-      function setMinValue() {
-         if (selectedDate <= date) {
-            alert('예약 불가능한 날짜입니다.'); //당일 예약 예외처리
-         }
-         else if (selectedDate > endDate || selectedDate < startDate) {
-            alert('예약 불가능한 날짜입니다.'); //전시회 시작 날짜, 마감 날짜 벗어남. 예외처리 
-         }
-         else {
-            alert('예약 가능한 날짜입니다.');
-         }
+	//예약 시점
+	let dateElement = document.getElementById('select_day');
+	let date = new Date(new Date().getTime()
+			- new Date().getTimezoneOffset() * 60000).toISOString().slice(
+			0, -5);
+	dateElement.value = date;
+	dateElement.setAttribute("min", date);
 
-
-		//전시 기간 시점
-
-	
+	function setMinValue() {
+		if (dateElement.value < date) {
+			alert('예약 불가능한 날짜입니다.'); //지난 날짜~당일 예약 불가능
+			dateElement.value = date;
+		}
+	}
 	</script>
 
 
