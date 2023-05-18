@@ -5,6 +5,11 @@
 <%@ page import="book.bookDto"%>
 <%@ page import="signUp.dao.MemberDao"%>
 <%@ page import="signUp.dto.MemberDto"%>
+<%@ page import="exhibition.dao.ExhibitionDao"%>
+<%@ page import="exhibition.dto.ExhibitionDto"%>
+<%@ page import="java.util.*"%>
+<%@ page import="exhibition.dao.MyDateUtil"%>
+<%@ page import="exhibition.dao.StringToDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
@@ -42,10 +47,36 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 	}
 	%>
 
+
+	<%
+	//2. DAO객체생성
+	ExhibitionDao exhibitionDao = new ExhibitionDao();
+
+	//3. 회원목록을 가져오는 메서드 사용
+	ExhibitionDto exhibitionDto = exhibitionDao.selectDpInfoBydp_seq(seq);
+	%>
+
+	<table>
+		<tr>
+			<h3>
+				전시회 명 :
+				<%=exhibitionDto.getDp_name()%></h3>
+			전시 기간 :
+			<%=MyDateUtil.convertStringToUtilDate(exhibitionDto.getDp_start())%>
+			<span id="endDate"> ~ <%=MyDateUtil.convertStringToUtilDate(exhibitionDto.getDp_end())%></span>
+		</tr>
+		<%
+		//}
+		%>
+	</table>
+
+
+	<br>
+
 	<form action="booktest_proc.jsp" method="post" name='bookForm'>
 		<input type="text" id="seq" name="seq" value="<%=seq%>" hidden>
 		날짜<input type="date" name="bookDate" class="decide_time"
-			id="select_day">
+			id="select_day" onchange="setMinValue()">
 		<div class="bookCheckdiv" id="bookCheck">
 
 			<%--체크 박스--%>
@@ -161,12 +192,14 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 		let bookCheck = {
 			totalCount : 0,
 			totalPrice : 0,
-			
+
 			//계산
 			reCalc : function() {
 				this.totalCount = 0;
 				this.totalPrice = 0;
-				document.querySelectorAll(".p_num").forEach(
+				document
+						.querySelectorAll(".p_num")
+						.forEach(
 								function(item) {
 									if (item.parentElement.parentElement.parentElement.previousElementSibling.firstElementChild.firstElementChild.checked == true) {
 										var count = parseInt(item
@@ -188,8 +221,7 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 				document.querySelector("#g_Pcount").value = this.totalCount;
 				document.querySelector("#g_Price").value = this.totalPrice;
 			},
-			
-			
+
 			//개별 수량 변경
 			changePNum : function(pos) {
 				var item = document.querySelector('input[name=p_num' + pos
@@ -233,38 +265,74 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 
 
 	<script>
-		document.getElementById('next_btn').addEventListener('click', function(e) {
-			var form = document.bookForm;
-			
-			var day = document.getElementById("select_day");
-			//예약 날짜 선택 확인
-			if (day.value.trim() == "") {
-				alert("날짜를 선택하세요.");
-				select_day.focus();
-				e.preventDefault(); //이벤트를 걸어서 폼으로 안 넘어가게 막기
-				return false;
-			}	
-			
-			//인원 수 선택 확인
-			var peopleSelect = document.querySelectorAll(".p_num");
-			var totalPeople = 0;
+		document.getElementById('next_btn').addEventListener('click',
+				function(e) {
+					var form = document.bookForm;
 
-			for (var i = 0; i < peopleSelect.length; i++) {
-			  totalPeople += parseInt(peopleSelect[i].value);
-			}
-			
-			console.log(totalPeople);
-			if (totalPeople < 1) {
-			  alert("인원 수를 1명 이상 선택하세요.");
-			  return;
-			}
-		
-			
-			//입력 값 전송
-			
-			form.submit();
-			
-		});
-		</script>
+					var day = document.getElementById("select_day");
+					//예약 날짜 선택 확인
+					if (day.value.trim() == "") {
+						alert("날짜를 선택하세요.");
+						select_day.focus();
+						e.preventDefault(); //이벤트를 걸어서 폼으로 안 넘어가게 막기
+						return false;
+					}
+
+					//인원 수 선택 확인
+					var peopleSelect = document.querySelectorAll(".p_num");
+					var totalPeople = 0;
+
+					for (var i = 0; i < peopleSelect.length; i++) {
+						totalPeople += parseInt(peopleSelect[i].value);
+					}
+
+					console.log(totalPeople);
+					if (totalPeople < 1) {
+						alert("인원 수를 1명 이상 선택하세요.");
+						return;
+					}
+
+					//입력 값 전송
+
+					form.submit();
+
+				});
+	</script>
+
+	<script>
+		//예약 시점
+		  let dateElement = document.getElementById('select_day');
+      let date = new Date(new Date().getTime()
+            - new Date().getTimezoneOffset() * 60000).toISOString().slice(
+            0, -5);
+      
+      // 왠지 dateElement.value이거 string 이라서 날짜 타입으로 변환시켜줘야 할듯?
+      let selectedDate = new Date(dateElement.value); 
+      
+      //dateElement.value = date;
+
+      dateElement.setAttribute("min", startDate);
+      dateElement.setAttribute("max", endDate);
+      function setMinValue() {
+         if (selectedDate <= date) {
+            alert('예약 불가능한 날짜입니다.'); //당일 예약 예외처리
+         }
+         else if (selectedDate > endDate || selectedDate < startDate) {
+            alert('예약 불가능한 날짜입니다.'); //전시회 시작 날짜, 마감 날짜 벗어남. 예외처리 
+         }
+         else {
+            alert('예약 가능한 날짜입니다.');
+         }
+
+
+		//전시 기간 시점
+
+	
+	</script>
+
+
+
+
+
 </body>
 </html>

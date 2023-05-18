@@ -65,8 +65,14 @@
 	//2. DAO객체생성
 
 	bookDao bookDAO = new bookDao();
-	//bookDto bookDTO = new bookDto();
 	bookDto bookDTO = bookDAO.selectMemberInfoById(user_id);
+	
+	if (bookDTO == null) {
+	    response.sendRedirect("./main.jsp");
+	  
+	}
+	
+	//bookDTO.size()
 	%>
 
 	<h2>예약 정보 조회 페이지</h2>
@@ -82,7 +88,6 @@
 			<td>아동</td>
 			<td>결제 가격</td>
 		</tr>
-
 
 		<tr>
 			<td><%=bookDTO.getBookDate()%></td>
