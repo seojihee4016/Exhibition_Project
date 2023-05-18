@@ -3,6 +3,8 @@
 <%@page import="java.sql.Connection"%>
 <%@ page import="signUp.dao.MemberDao"%>
 <%@ page import="signUp.dto.MemberDto"%>
+<%@ page import="book.bookDao"%>
+<%@ page import="book.bookDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
@@ -16,15 +18,18 @@
 	<%
 	//1.한글처리, 파라미터 
 	request.setCharacterEncoding("UTF-8");
-	String user_id = (String)session.getAttribute("user_id");//object를 string으로 다운캐스팅
+	String user_id = (String) session.getAttribute("user_id");//object를 string으로 다운캐스팅
 	String name = request.getParameter("name");
 	String user_id2 = request.getParameter("name");
 
 	//int id = (Integer)session.getAttribute("id");
-	   
-	   MemberDao memberDao = new MemberDao();
-	   MemberDto memberDto = memberDao.selectMemberInfoById(user_id);
-	   //MemberDto memberDto = memberDao.selectMemberInfoById(Integer.parseInt(id));
+
+	MemberDao memberDao = new MemberDao();
+	MemberDto memberDto = memberDao.selectMemberInfoById(user_id);
+
+	bookDao bookDAO = new bookDao();
+	bookDto bookDTO = bookDAO.selectMemberInfoById(user_id);
+	//MemberDto memberDto = memberDao.selectMemberInfoById(Integer.parseInt(id));
 	//1-1. id없이는 진입불가, id없는 경우 로그인페이지로 이동
 	if (user_id == null) {
 		response.sendRedirect("login.jsp");
@@ -44,22 +49,24 @@
 
 
 	<input type="button" value="예약 현황 확인(관리자용)"
-		onclick="location.href='memberList.jsp'"> <!-- 여기도 수정해야될듯-->
+		onclick="location.href='memberList.jsp'">
 	<%
 	}
 	%>
-	
+
 	<!-- 일반 회원일 때 -->
 	<%
 	//if (user_id != null && user_id == user_id2) { // 이부분 수정해야.. id가 id랑 같으면???
 	%>
 	<input type="button" value="회원정보조회"
-		onclick="location.href='personalInfo.jsp'" class = "personalId" 
+		onclick="location.href='personalInfo.jsp'" class="personalId"
 		id="<%=memberDto.getUser_id()%>">
 
 
 	<input type="button" value="예약 현황 확인"
-		onclick="location.href='memberList.jsp'"> <!-- 여기도 새파일만들면수정 -->
+		onclick="location.href='personalInfo.jsp'" class="personalId"
+		id="<%=bookDTO.getUser_id()%>">
+
 	<%
 	//}
 	%>

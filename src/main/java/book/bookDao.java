@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import signUp.dao.MemberDao;
 import signUp.dto.MemberDto;
 import signUp.oracle.DBConnectionManager;
 public class bookDao {
@@ -86,8 +86,8 @@ public class bookDao {
 				bookDTO.setTeenager(rs.getInt("teenager"));
 				bookDTO.setChild(rs.getInt("child"));
 				bookDTO.setPrice(rs.getInt("price"));
-				
-				
+
+
 				// 여기까지가 한 행의 데이터를 변수mb에 저장한 것임. while로 모든 행을 반복해서 변수mb에 저장
 
 				// 가변배열(ArrayList)에 위의 데이터mb를 저장
@@ -109,4 +109,38 @@ public class bookDao {
 	}
 
 	
+	/** 로그인 아이디로 회원정보 불러오기 */
+	public bookDto selectMemberInfoById(String user_id) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		bookDto bookDTO = null;
+
+		String sql = "select * from book where user_id=?";
+
+		try {
+			conn = DBConnectionManager.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, user_id);
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				bookDTO = new bookDto();
+				bookDTO.setUser_id(rs.getString("user_id"));
+				bookDTO.setBookDate(rs.getString("bookDate"));
+				bookDTO.setName(rs.getString("name"));
+				bookDTO.setPhone(rs.getString("phone"));
+				bookDTO.setEmail(rs.getString("email"));
+				bookDTO.setPeopleCount(rs.getInt("peopleCount"));
+				bookDTO.setAdult(rs.getInt("adult"));
+				bookDTO.setTeenager(rs.getInt("teenager"));
+				bookDTO.setChild(rs.getInt("child"));
+				bookDTO.setPrice(rs.getInt("price"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bookDTO;
+	}
+
 }
