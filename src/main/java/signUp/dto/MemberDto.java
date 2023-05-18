@@ -9,7 +9,15 @@ public class MemberDto {
 	private String gender; 
 	private String birthDate;
 	private String email;
+	
+	
 
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getUser_id() {
 		return user_id;
 	}

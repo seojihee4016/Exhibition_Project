@@ -51,10 +51,10 @@
 			<br>
 			<h3><%=exhibitionDto.getDp_name()%></h3>
 			전시 장소 : <%=exhibitionDto.getDp_place()%><br>
-			<br><span>전시 기간 :</span>
+			<br>전시 기간 :
 			<%=MyDateUtil.convertStringToUtilDate(exhibitionDto.getDp_start())%>
 			~
-			<%=MyDateUtil.convertStringToUtilDate(exhibitionDto.getDp_end())%><br>
+			<span id="endDate"><%=MyDateUtil.convertStringToUtilDate(exhibitionDto.getDp_end())%></span><br>
 			<br>주최 및 후원 : <%=exhibitionDto.getDp_sponsor()%><br>
 			<br>관람 시간 : <%=exhibitionDto.getDp_viewtime()%><br>
 			<br>관람 요금 :

@@ -3,8 +3,7 @@
 <%@page import="java.sql.Connection"%>
 <%@ page import="signUp.dao.MemberDao"%>
 <%@ page import="signUp.dto.MemberDto"%>
-<%@ page import="book.bookDao"%>
-<%@ page import="book.bookDto"%>
+
 <%@ page import="signUp.dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -25,7 +24,7 @@
 	}
 	//2. DAO객체생성
 	MemberDao memberDao = new MemberDao();
-	bookDao bookDAO = new bookDao();
+//	bookDao bookDAO = new bookDao();
 
 	//3. 회원목록을 가져오는 메서드 사용
 	memberDao.getMemberList();
