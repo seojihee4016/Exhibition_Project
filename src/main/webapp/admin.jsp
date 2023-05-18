@@ -57,8 +57,11 @@
 	<input type="button" value="회원정보조회"
 		onclick="location.href='personalInfo.jsp'" class="personalId"
 		id="<%=memberDto.getUser_id()%>">
-
-
+		
+			<input type="button" value="예약정보조회"
+		onclick="location.href='personalBookList.jsp'" class="bookId"
+		id="<%=memberDto.getUser_id()%>">
+		
 	<%
 	}
 	%>
@@ -73,6 +76,16 @@
 
 				var temp_link = $(this).attr("id");
 				location.href = 'personalInfo.jsp?user_id=' + temp_link; // 다른 JSP 페이지의 경로
+
+			});
+		});
+		
+		$(function() {
+
+			$(".bookId").click(function() {
+
+				var temp_link = $(this).attr("id");
+				location.href = 'personalBookList.jsp?user_id=' + temp_link; // 다른 JSP 페이지의 경로
 
 			});
 		});
