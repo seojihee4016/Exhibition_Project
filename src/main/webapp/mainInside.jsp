@@ -1,3 +1,4 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
@@ -86,8 +87,14 @@
 		String endDate = exhibitionDto.getDp_end();
 		//Date date = new SimpledateFormat("yyyy-MM-dd HH:mm:ss").parse(endDate);
 		Date now = new Date();
-		if( StringToDate.convertStringToUtilDate(endDate) === now ) { %>
-		alert("이미 종료된 전시입니다.")
+		Date endDate_dt = StringToDate.convertStringToUtilDate(endDate);
+		//오늘 - 예약일 = 양수
+		//05/18  05/19 = 음수
+		//예약일 - 오늘 = 음수
+		//05/18 - 05/15 = 양수
+		
+		if( (now.getTime() - endDate_dt.getTime()) > 0 ) { %>
+			alert("이미 종료된 전시입니다.")
 		<% 
 		} else {
 		%>
