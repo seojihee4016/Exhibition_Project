@@ -174,9 +174,7 @@
 				<ul>
 					<li><select>
 							<option selected>010</option>
-							<option>011</option>
-							<option>016</option>
-							<option>070</option>
+							
 					</select> <input type="text" id="phone_id" name="phone" maxlength="9"  placeholder="ex)1234-1234" style = "width: 66%;">
 					</li>
 

@@ -47,6 +47,7 @@ UPDATE exhibitionData SET dp_viewtime = '[월요일 휴관]<br>
 ' WHERE dp_viewtime is null ;
 
 UPDATE exhibitionData SET dp_viewcharge = '유료' WHERE dp_viewcharge IS NULL;
+UPDATE exhibitionData SET dp_viewcharge = '유료' WHERE dp_viewcharge = '무료';
 
 -- 3-2. 주최 및 후원 null 값 '-'로 변경, 관람 포인트 null 값 '-' 로 변경
 UPDATE exhibitionData SET dp_sponsor = '-' WHERE dp_sponsor is null ;
@@ -82,5 +83,6 @@ adult int NOT NULL,
 teenager int NOT NULL,
 child int NOT NULL
 );
+
 
 
